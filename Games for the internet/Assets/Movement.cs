@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     private SpriteRenderer PlayerSprite;
     public Animator CurrentAnimation;
     private Rigidbody2D Body;
-    private BoxCollider2D playerCollider;
+    private CapsuleCollider2D playerCollider;
 
     [SerializeField]
     private LayerMask floorMask;
@@ -27,7 +27,7 @@ public class Movement : MonoBehaviour
     {
         PlayerSprite = gameObject.GetComponent<SpriteRenderer>();
         Body = gameObject.GetComponent<Rigidbody2D>();
-        playerCollider = gameObject.GetComponent<BoxCollider2D>();
+        playerCollider = gameObject.GetComponent<CapsuleCollider2D>();
         FlipX = false;
     }
 
@@ -38,12 +38,12 @@ public class Movement : MonoBehaviour
         {
            if (isGrounded() && Input.GetKeyDown(KeyCode.Space))
             {
-                JumpAnimation();
-                //if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
-                //{
-                    // playerVelocity = new Vector2(Body.velocity.x, 10);
-                   jumpForce.y += 400.0f * 2;
-                
+                if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+                {
+                    JumpAnimation();
+                    //playerVelocity = new Vector2(Body.velocity.x, 10);
+                    jumpForce.y += 400.0f * 2;
+                }
             }
 
             else if (Input.GetKey(KeyCode.RightArrow))
@@ -71,13 +71,13 @@ public class Movement : MonoBehaviour
         }
 
 
-        else
-        {
-            IdleAnimation();
-            Body.velocity = new Vector2(0, Body.velocity.y);
-            playerVelocity = new Vector2(0, Body.velocity.y);
-            // isJumping = 0;
-        }
+        //else
+        //{
+        //    IdleAnimation();
+        //    Body.velocity = new Vector2(0, Body.velocity.y);
+        //    playerVelocity = new Vector2(0, Body.velocity.y);
+        //    // isJumping = 0;
+        //}
 
         if (Input.GetKeyDown(KeyCode.J))
         {           
@@ -101,7 +101,7 @@ public class Movement : MonoBehaviour
 
     private bool isGrounded()
     {
-        float extraHieght = 0.5f;
+        float extraHieght = 0.1f;
         RaycastHit2D hit = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, extraHieght, floorMask);
         Color rayColour;
         if(hit.collider != null)

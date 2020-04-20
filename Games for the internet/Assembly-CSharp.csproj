@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\CharacterController2D.cs" />
     <Compile Include="Assets\Movement.cs" />
+    <None Include="Assets\Taiga-Asset-Pack_v2_vnitti\Readme.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Kyle/Documents/GitHub/Games-for-the-Internet/Games for the internet/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
