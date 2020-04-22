@@ -63,7 +63,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AI_Script.cs" />
     <Compile Include="Assets\CharacterController2D.cs" />
+    <Compile Include="Assets\Functions.cs" />
     <Compile Include="Assets\Movement.cs" />
     <None Include="Assets\Taiga-Asset-Pack_v2_vnitti\Readme.txt" />
     <Reference Include="Unity.Timeline.Editor">

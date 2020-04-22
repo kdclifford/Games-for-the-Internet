@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
 
     [SerializeField]
     private LayerMask floorMask;
-
+    public float hoverAmount;
     private Vector3 m_Velocity = Vector3.zero;
 
     private float MaxSpeed = 10.0f;
@@ -36,9 +36,9 @@ public class Movement : MonoBehaviour
     {
         if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
-           if (isGrounded() && Input.GetKeyDown(KeyCode.Space))
+           if (isGrounded() && Input.GetKeyDown(KeyCode.Space) | Input.GetKeyDown(KeyCode.W))
             {
-                if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+                if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Jump") | isGrounded())
                 {
                     JumpAnimation();
                     //playerVelocity = new Vector2(Body.velocity.x, 10);
@@ -46,14 +46,14 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            else if (Input.GetKey(KeyCode.RightArrow))
+            else if (Input.GetKey(KeyCode.RightArrow) | Input.GetKey(KeyCode.D))
             {
                 playerVelocity = new Vector2(MaxSpeed, Body.velocity.y);
                 FlipDirectionRight();
                 MoveAnimation();
             }
 
-            else if (Input.GetKey(KeyCode.LeftArrow))
+            else if (Input.GetKey(KeyCode.LeftArrow) | Input.GetKey(KeyCode.A))
             {
                 playerVelocity = new Vector2(-MaxSpeed, Body.velocity.y);
                 FlipDirectionLeft();
@@ -91,7 +91,7 @@ public class Movement : MonoBehaviour
     {
         //m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
         Body.velocity = Vector3.SmoothDamp(Body.velocity, playerVelocity, ref m_Velocity, 0.5f);
-        Body.AddForce( jumpForce);
+        Body.AddForce( new Vector2( jumpForce.x, jumpForce.y));
         jumpForce = Vector2.zero;
         // Body.velocity = Vector3.SmoothDamp(Body.velocity, new Vector2(Body.velocity.x - (isMovingLeft * 10), Body.velocity.y), ref m_Velocity, 0.5f);
         // Body.velocity = (new Vector2(Body.velocity.x - (isMovingLeft ), Body.velocity.y));;
@@ -112,7 +112,9 @@ public class Movement : MonoBehaviour
         {
             rayColour = Color.red;
         }
-        Debug.DrawRay(playerCollider.bounds.center, Vector2.down * (playerCollider.bounds.extents.y + extraHieght), rayColour);
+        Debug.DrawRay(playerCollider.bounds.center + new Vector3(playerCollider.bounds.extents.x, 0), Vector2.down * (playerCollider.bounds.extents.y + extraHieght), rayColour);
+        Debug.DrawRay(playerCollider.bounds.center - new Vector3(playerCollider.bounds.extents.x, 0), Vector2.down * (playerCollider.bounds.extents.y + extraHieght), rayColour);
+        Debug.DrawRay(playerCollider.bounds.center - new Vector3(playerCollider.bounds.extents.x, playerCollider.bounds.extents.y + extraHieght), Vector3.right * (playerCollider.bounds.extents.x * 2), rayColour);
         Debug.Log(hit.collider);
 
         return hit.collider != null;
