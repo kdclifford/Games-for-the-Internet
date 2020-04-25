@@ -24,6 +24,9 @@ public class AI_Script : MonoBehaviour
     private Grid terrainMap;
 
     private bool getTerrain = false;
+
+    private bool oneTime = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,11 +58,15 @@ public class AI_Script : MonoBehaviour
             int AgentGridPosX, AgentGridPosY;
             int PlayerGridPosX, PlayerGridPosY;
 
+
             KylesFunctions.GetXY(transform.position, terrainMap.GetOriginPos(), terrainMap.GetCellSize(), out AgentGridPosX, out AgentGridPosY);
             KylesFunctions.GetXY(player.transform.position, terrainMap.GetOriginPos(), terrainMap.GetCellSize(), out PlayerGridPosX, out PlayerGridPosY);
 
-
-
+            if (oneTime == false)
+            {
+                KylesFunctions.AStar(terrainMap, AgentGridPosX, AgentGridPosY, PlayerGridPosX, PlayerGridPosY, 2, false);
+                oneTime = true;
+            }
 
             //terrainMap.SetValue(terrainMap.GetWorldPosition(AgentGridPosX, AgentGridPosY), 5);
             //terrainMap.SetValue(terrainMap.GetWorldPosition(PlayerGridPosX, PlayerGridPosY), 7);
