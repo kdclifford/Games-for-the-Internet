@@ -52,7 +52,7 @@ namespace Functions.Utils
             Debug.DrawRay(agentCollider.bounds.center + new Vector3(agentCollider.bounds.extents.x, 0), Vector2.down * (agentCollider.bounds.extents.y + rayFloorDistance), rayColour);
             Debug.DrawRay(agentCollider.bounds.center - new Vector3(agentCollider.bounds.extents.x, 0), Vector2.down * (agentCollider.bounds.extents.y + rayFloorDistance), rayColour);
             Debug.DrawRay(agentCollider.bounds.center - new Vector3(agentCollider.bounds.extents.x, agentCollider.bounds.extents.y + rayFloorDistance), Vector3.right * (agentCollider.bounds.extents.x * 2), rayColour);
-            Debug.Log(hit.collider);
+            // Debug.Log(hit.collider);
 
             return hit.collider != null;
         }
@@ -91,14 +91,14 @@ namespace Functions.Utils
 
             }
 
-            Debug.Log(hit.collider);
+            //Debug.Log(hit.collider);
 
             return hit.collider != null;
 
         }
 
         //Set all the Grid Values to pathable and non pathable
-        public static Grid GridValues(Grid grid, LayerMask floorMask)
+        public static Grid GridValues(Grid grid, LayerMask floorMask, float playerHeight, Color gridColour)
         {
 
             for (int x = 0; x < grid.GetWidth(); x++)
@@ -109,17 +109,17 @@ namespace Functions.Utils
                     //If hitting floor layer then node is not accesible = 0
                     if (Physics2D.Raycast(new Vector2(gridxy.x + 0.5f, gridxy.y + 0.5f), Vector2.zero, 0.0f, floorMask))
                     {
-                        grid.SetValue(grid.GetWorldPosition(x, y), 0);
+                        grid.SetValue(grid.GetWorldPosition(x, y), 0, gridColour);
                     }
                     //This is a air block but is above the walkable ground = 1
-                    else if (Physics2D.Raycast(new Vector2(gridxy.x + 0.5f, gridxy.y + 0.5f), Vector2.down, 0.6f, floorMask))
+                    else if (Physics2D.Raycast(new Vector2(gridxy.x + 0.5f, gridxy.y + 0.5f), Vector2.down, 0.1f + playerHeight, floorMask))
                     {
-                        grid.SetValue(grid.GetWorldPosition(x, y), 1);
+                        grid.SetValue(grid.GetWorldPosition(x, y), 1, gridColour);
                     }
                     //Air equals 2
                     else
                     {
-                        grid.SetValue(grid.GetWorldPosition(x, y), 2);
+                        grid.SetValue(grid.GetWorldPosition(x, y), 2, gridColour);
                     }
                 }
             }
@@ -134,14 +134,18 @@ namespace Functions.Utils
         }
 
         //AStar 
-        public static void AStar(Grid terrainMap, int startX, int startY, int goalX, int goalY, int agentHeight, bool left)
+        public static void AStar(Grid terrainMap, int startX, int startY, int goalX, int goalY, int agentHeight, bool left, ref List<CNode> path)
         {
             List<CNode> openList = new List<CNode>();
             List<CNode> closedList = new List<CNode>();
 
+
             CNode startNode = new CNode();
             startNode.x = startX;
             startNode.y = startY;
+            startNode.parentNode = new CNode();
+            startNode.parentNode.x = terrainMap.GetHeight() + terrainMap.GetWidth();
+            startNode.parentNode.y = terrainMap.GetHeight() + terrainMap.GetWidth();
             startNode.heuristic = GetHeuristic(startNode.x, startNode.y, goalX, goalY);
             startNode.cost = GetHeuristic(startNode.x, startNode.y, startX, startY);
             startNode.fCost = startNode.cost + startNode.heuristic;
@@ -149,12 +153,47 @@ namespace Functions.Utils
             openList.Add(startNode);
 
 
-            while (openList.Count > 0 | openList[0].x != goalX && openList[0].y != goalY)
+            while (openList.Count > 0)
             {
-                openList = GenerateNodes(ref openList, ref closedList, new Vector2(startX, startY), new Vector2(goalX, goalY), terrainMap);
-                closedList.Add(openList[0]);
-                openList.RemoveAt(0);
+
+                //Coords of First element in openlist
+                CNode currentNode = new CNode();
+
+                currentNode.x = openList[0].x;
+                currentNode.y = openList[0].y;
+                currentNode.parentNode = openList[0].parentNode;
+
+                currentNode.heuristic = GetHeuristic(currentNode.x, currentNode.y, Mathf.FloorToInt(goalX), Mathf.FloorToInt(goalY));
+                currentNode.cost = GetHeuristic(currentNode.x, currentNode.y, Mathf.FloorToInt(startX), Mathf.FloorToInt(startY));
+                currentNode.stepAmount = openList[0].stepAmount;
+                currentNode.fCost = currentNode.cost + currentNode.heuristic + currentNode.stepAmount;
+
+
+                openList = GenerateNodes(ref openList, ref closedList, new Vector2(startX, startY), new Vector2(goalX, goalY), terrainMap, ref currentNode);
+                //closedList.Add(openList[0]);
+                //openList.RemoveAt(0);
                 openList = openList.OrderBy(go => go.fCost).ToList();
+
+
+
+
+                if (currentNode != null && currentNode.x == goalX && currentNode.y == goalY)
+                {
+                    //List<CNode> path = new List<CNode>();
+                    path.Add(currentNode);
+
+                    int GoalparentPos = terrainMap.GetHeight() + terrainMap.GetWidth();
+
+                    while (path[path.Count - 1].parentNode.x != GoalparentPos && path[path.Count - 1].parentNode.y != GoalparentPos)
+                    {
+                        path.Add(path[path.Count - 1].parentNode);
+                        Debug.Log(path[path.Count - 1].x + "  " + path[path.Count - 1].y);
+                    }
+
+                    Debug.Log("Path Found");
+
+
+                }
 
 
             }
@@ -166,77 +205,67 @@ namespace Functions.Utils
 
         }
 
-        public static List<CNode> GenerateNodes(ref List<CNode> openList, ref List<CNode> closedList, Vector2 start, Vector2 goal, Grid terrainMap)
+        public static List<CNode> GenerateNodes(ref List<CNode> openList, ref List<CNode> closedList, Vector2 start, Vector2 goal, Grid terrainMap, ref CNode currentNode)
         {
             if (openList.Count != 0)
             {
-                //Coords of First element in openlist
-                CNode currentNode = new CNode();
+                //remove current node
+                openList.RemoveAt(0);
+
                 CNode newNode = new CNode();
-                currentNode.x = openList[0].x;
-                currentNode.y = openList[0].y;
-                currentNode.heuristic = GetHeuristic(currentNode.x, currentNode.y, Mathf.FloorToInt(goal.x), Mathf.FloorToInt(goal.y));
-                currentNode.cost = GetHeuristic(currentNode.x, currentNode.y, Mathf.FloorToInt(start.x), Mathf.FloorToInt(start.y));
-                currentNode.fCost = currentNode.cost + currentNode.heuristic;
+
 
                 //North
+
                 if (terrainMap.GetValue(currentNode.x, currentNode.y + 1) != 0)
                 {
                     newNode = new CNode();
                     newNode.x = currentNode.x;
                     newNode.y = currentNode.y + 1;
-                    newNode.fCost = currentNode.heuristic + currentNode.cost;
-                    newNode.parentNode = currentNode;
-                    if (!CheckListForLowerScore(ref closedList, ref openList, newNode))
-                    {
-                        openList.Add(newNode);
-                    }
+                    PopulateNode(ref newNode, ref currentNode, ref openList, ref closedList, start, goal);
+
+                    CheckLeftRight(terrainMap, ref newNode, ref currentNode, ref openList, ref closedList, start, goal);
+
                 }
 
+
                 //East
+
                 if (terrainMap.GetValue(currentNode.x + 1, currentNode.y) != 0)
                 {
                     newNode = new CNode();
                     newNode.x = currentNode.x + 1;
                     newNode.y = currentNode.y;
-                    newNode.fCost = currentNode.heuristic + currentNode.cost;
-                    newNode.parentNode = currentNode;
-                    if (!CheckListForLowerScore(ref closedList, ref openList, newNode))
-                    {
-                        openList.Add(newNode);
-                    }
+                    PopulateNode(ref newNode, ref currentNode, ref openList, ref closedList, start, goal);
+                    CheckUpDown(terrainMap, ref newNode, ref currentNode, ref openList, ref closedList, start, goal);
                 }
 
+
                 //South
+
                 if (terrainMap.GetValue(currentNode.x, currentNode.y - 1) != 0)
                 {
                     newNode = new CNode();
                     newNode.x = currentNode.x;
                     newNode.y = currentNode.y - 1;
-                    newNode.fCost = currentNode.heuristic + currentNode.cost;
-                    newNode.parentNode = currentNode;
-                    if (!CheckListForLowerScore(ref closedList, ref openList, newNode))
-                    {
-                        openList.Add(newNode);
-                    }
-                    // CheckListForLowerScore(ref openList, ref closedList, newNode);
+                    PopulateNode(ref newNode, ref currentNode, ref openList, ref closedList, start, goal);
+                    CheckLeftRight(terrainMap, ref newNode, ref currentNode, ref openList, ref closedList, start, goal);
                 }
 
+
                 //West
+
                 if (terrainMap.GetValue(currentNode.x - 1, currentNode.y) != 0)
                 {
                     newNode = new CNode();
                     newNode.x = currentNode.x - 1;
                     newNode.y = currentNode.y;
-                    newNode.fCost = currentNode.heuristic + currentNode.cost;
-                    newNode.parentNode = currentNode;
-                    if (!CheckListForLowerScore(ref closedList, ref openList, newNode))
-                    {
-                        openList.Add(newNode);
-                    }
+                    PopulateNode(ref newNode, ref currentNode, ref openList, ref closedList, start, goal);
+                    CheckUpDown(terrainMap, ref newNode, ref currentNode, ref openList, ref closedList, start, goal);
                 }
 
 
+                closedList.Add(currentNode);
             }
 
             return openList;
@@ -246,25 +275,114 @@ namespace Functions.Utils
         {
             int heuristic = (Mathf.Abs(x) + Mathf.Abs(y)) - (Mathf.Abs(x2) + Mathf.Abs(y2));
 
-            return heuristic;
+            return Mathf.Abs(heuristic);
         }
 
-        public static bool CheckListForLowerScore(ref List<CNode> list, ref List<CNode> newList, CNode newNode)
+        public static bool CheckClosedListForLowerScore(List<CNode> list, CNode newNode)
         {
             for (int i = 0; i < list.Count; i++)
             {
                 if (list[i].x == newNode.x && list[i].y == newNode.y)
                 {
-                    if (list[i].fCost < newNode.fCost)
-                    {
-                        newList.Add(list[i]);
-                        list.RemoveAt(i);
-                        return true;
-                    }
+                    return true;
                 }
             }
             return false;
         }
+
+        public static bool CheckOpenListForLowerScore(ref List<CNode> list, CNode newNode)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].x == newNode.x && list[i].y == newNode.y)
+                {
+                    if (newNode.fCost <= list[i].fCost)
+                    {
+                        list.RemoveAt(i);
+                        return true;
+                    }
+                    
+                }
+            }
+
+            return false;
+        }
+
+        public static void PopulateNode(ref CNode node, ref CNode parentNode, ref List<CNode> openList, ref List<CNode> closedList, Vector2 start, Vector2 goal)
+        {
+            node.heuristic = GetHeuristic(node.x, node.y, Mathf.FloorToInt(goal.x), Mathf.FloorToInt(goal.y));
+            node.cost = GetHeuristic(node.x, node.y, Mathf.FloorToInt(start.x), Mathf.FloorToInt(start.y));
+            node.parentNode = parentNode;
+            node.stepAmount = node.parentNode.stepAmount + 1;
+            node.fCost = node.heuristic + node.cost + node.stepAmount;
+
+            if (!CheckClosedListForLowerScore(closedList, node))
+            {
+                if (!CheckOpenListForLowerScore(ref openList, node))
+                {
+                    openList.Add(node);
+                }
+            }
+        }
+
+        public static void CheckLeftRight(Grid terrainMap, ref CNode currentNode, ref CNode parentNode, ref List<CNode> openList, ref List<CNode> closedList, Vector2 start, Vector2 goal)
+        {
+            CNode node = new CNode();
+            if (terrainMap.GetValue(currentNode.x + 1, currentNode.y) != 0)
+            {
+                node = new CNode();
+                node.x = currentNode.x + 1;
+                node.y = currentNode.y;
+                PopulateNode(ref node, ref parentNode, ref openList, ref closedList, start, goal);
+
+
+
+            }
+
+            if (terrainMap.GetValue(currentNode.x - 1, currentNode.y) != 0)
+            {
+                node = new CNode();
+                node.x = currentNode.x - 1;
+                node.y = currentNode.y;
+                PopulateNode(ref node, ref parentNode, ref openList, ref closedList, start, goal);
+
+
+
+            }
+
+        }
+
+        public static void CheckUpDown(Grid terrainMap, ref CNode currentNode, ref CNode parentNode, ref List<CNode> openList, ref List<CNode> closedList, Vector2 start, Vector2 goal)
+        {
+            CNode newNode;
+            if (terrainMap.GetValue(currentNode.x, currentNode.y + 1) != 0)
+            {
+                newNode = new CNode();
+                newNode.x = currentNode.x;
+                newNode.y = currentNode.y + 1;
+                PopulateNode(ref newNode, ref parentNode, ref openList, ref closedList, start, goal);
+
+
+
+            }
+
+            if (terrainMap.GetValue(currentNode.x, currentNode.y - 1) != 0)
+            {
+                newNode = new CNode();
+                newNode.x = currentNode.x;
+                newNode.y = currentNode.y - 1;
+                PopulateNode(ref newNode, ref parentNode, ref openList, ref closedList, start, goal);
+
+
+
+            }
+
+        }
+
+
+
+
+
 
     }
 }

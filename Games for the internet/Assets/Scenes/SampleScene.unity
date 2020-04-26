@@ -863,6 +863,8 @@ MonoBehaviour:
   floorMask:
     serializedVersion: 2
     m_Bits: 256
+  agentHeight: 1
+  gridColour: {r: 1, g: 0.8632076, b: 0.99540967, a: 1}
 --- !u!1 &351446975
 GameObject:
   m_ObjectHideFlags: 0

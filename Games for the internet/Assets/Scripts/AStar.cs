@@ -19,13 +19,18 @@ public class CNode
 
     public int heuristic { get; set; }
     public int cost { get; set; } //Cost to move there
+    public int stepAmount { get; set; } //Cost to move there
     public int fCost { get; set; } //Finale Cost. e.g. cost + heuristic
     public CNode parentNode { get; set; }
+
+   // public int parentNodeX { get; set; }
+   // public int parentNodeY { get; set; }
 
     public CNode()
     {
         heuristic = 0;
-        cost = 1;
+        cost = 0;
+        stepAmount = 0;
         fCost = 0;
         //parentPos = new CNodePosition();
     }

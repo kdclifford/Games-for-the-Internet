@@ -23,6 +23,7 @@ public class AI_Script : MonoBehaviour
 
     private Grid terrainMap;
 
+    private List<CNode> path = new List<CNode>();
     private bool getTerrain = false;
 
     private bool oneTime = false;
@@ -62,16 +63,23 @@ public class AI_Script : MonoBehaviour
             KylesFunctions.GetXY(transform.position, terrainMap.GetOriginPos(), terrainMap.GetCellSize(), out AgentGridPosX, out AgentGridPosY);
             KylesFunctions.GetXY(player.transform.position, terrainMap.GetOriginPos(), terrainMap.GetCellSize(), out PlayerGridPosX, out PlayerGridPosY);
 
-            if (oneTime == false)
-            {
-                KylesFunctions.AStar(terrainMap, AgentGridPosX, AgentGridPosY, PlayerGridPosX, PlayerGridPosY, 2, false);
-                oneTime = true;
-            }
+            //if (oneTime == false)
+            //{
+                KylesFunctions.AStar(terrainMap, AgentGridPosX, AgentGridPosY, PlayerGridPosX, PlayerGridPosY, 2, false, ref path);
+
+                for (int i = 0; i < path.Count - 1; i++)
+                {
+                    terrainMap.SetValue(path[i].x, path[i].y, terrainMap.GetValue(path[i].x, path[i].y), Color.blue);                  
+                }
+
+
+            
+            
 
             //terrainMap.SetValue(terrainMap.GetWorldPosition(AgentGridPosX, AgentGridPosY), 5);
             //terrainMap.SetValue(terrainMap.GetWorldPosition(PlayerGridPosX, PlayerGridPosY), 7);
-            Debug.Log(AgentGridPosX + "  " + AgentGridPosY + " oioi" );
-            Debug.Log(terrainMap.GetValue(3, 1));
+            //Debug.Log(AgentGridPosX + "  " + AgentGridPosY + " oioi" );
+            //Debug.Log(terrainMap.GetValue(3, 1));
 
 
 

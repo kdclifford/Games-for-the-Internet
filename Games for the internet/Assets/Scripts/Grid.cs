@@ -10,6 +10,7 @@ public class Grid {
     public class OnGridValueChangedEventArgs : EventArgs {
         public int x;
         public int y;
+        public Color colour = Color.white;
     }
 
     private int width;
@@ -37,7 +38,7 @@ public class Grid {
             {
                 for (int y = 0; y < gridArray.GetLength(1); y++) 
                 {     
-                    debugTextArray[x, y] = KylesFunctions.CreateText(gridArray[x, y].ToString(), null, GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * .5f, 10, Color.red, TextAnchor.MiddleCenter);
+                    debugTextArray[x, y] = KylesFunctions.CreateText(gridArray[x, y].ToString(), null, GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * .5f, 10, Color.white, TextAnchor.MiddleCenter);
                     Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.white, 100f);
                     Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y), Color.white, 100f);
                 }
@@ -48,6 +49,7 @@ public class Grid {
             OnGridValueChanged += (object sender, OnGridValueChangedEventArgs eventArgs) => 
             {
                 debugTextArray[eventArgs.x, eventArgs.y].text = gridArray[eventArgs.x, eventArgs.y].ToString();
+                debugTextArray[eventArgs.x, eventArgs.y].color = eventArgs.colour;
             };
         }
     }
@@ -65,7 +67,7 @@ public class Grid {
     }
 
     public Vector3 GetWorldPosition(int x, int y) {
-        Debug.Log(new Vector3(x, y) * cellSize + originPosition);
+       // Debug.Log(new Vector3(x, y) * cellSize + originPosition);
         return new Vector3(x, y) * cellSize + originPosition;
     }
 
@@ -74,17 +76,34 @@ public class Grid {
         y = Mathf.FloorToInt((worldPosition - originPosition).y / cellSize);
     }
 
-    public void SetValue(int x, int y, int value) {
+    public void SetValue(int x, int y, int value, Color valueColour) {
         if (x >= 0 && y >= 0 && x < width && y < height) {
             gridArray[x, y] = value;
-            if (OnGridValueChanged != null) OnGridValueChanged(this, new OnGridValueChangedEventArgs { x = x, y = y });
+            if (OnGridValueChanged != null) OnGridValueChanged(this, new OnGridValueChangedEventArgs { x = x, y = y, colour = valueColour });
         }
     }
+
+    public void SetValue(int x, int y, int value)
+    {
+        if (x >= 0 && y >= 0 && x < width && y < height)
+        {
+            gridArray[x, y] = value;
+            if (OnGridValueChanged != null) OnGridValueChanged(this, new OnGridValueChangedEventArgs { x = x, y = y});
+        }
+    }
+
 
     public void SetValue(Vector3 worldPosition, int value) {
         int x, y;
         GetXY(worldPosition, out x, out y);
         SetValue(x, y, value);
+    }
+
+    public void SetValue(Vector3 worldPosition, int value, Color valueColour)
+    {
+        int x, y;
+        GetXY(worldPosition, out x, out y);
+        SetValue(x, y, value, valueColour);
     }
 
     public int GetValue(int x, int y) {

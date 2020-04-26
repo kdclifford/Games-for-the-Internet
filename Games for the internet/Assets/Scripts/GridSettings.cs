@@ -11,11 +11,13 @@ public class GridSettings : MonoBehaviour {
     public int gridWidth;
     public int gridHeight;
     public LayerMask floorMask;
+    public float agentHeight;
+    public Color gridColour;
 
     private void Start() {
         grid = new Grid(gridWidth, gridHeight, gridSize, gridPosition);
 
-       grid = KylesFunctions.GridValues(grid, floorMask);
+       grid = KylesFunctions.GridValues(grid, floorMask, agentHeight, gridColour);
 
 
 
@@ -26,5 +28,6 @@ public class GridSettings : MonoBehaviour {
         return grid;
     }
 
-  
+   
+
 }
