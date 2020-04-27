@@ -18,18 +18,19 @@ public class Grid {
     private float cellSize;
     private Vector3 originPosition;
     private int[,] gridArray;
+    private bool showDebug = false;
 
-    public Grid(int width, int height, float cellSize, Vector3 originPosition) {
+    public Grid(int width, int height, float cellSize, Vector3 originPosition, bool debug) {
         this.width = width;
         this.height = height;
         this.cellSize = cellSize;
         this.originPosition = originPosition;
+        this.showDebug = debug;
 
         gridArray = new int[width, height];
 
         
         
-        bool showDebug = true;
         if (showDebug) 
         {
             TextMesh[,] debugTextArray = new TextMesh[width, height];
