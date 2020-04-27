@@ -25,6 +25,7 @@ public class GridSettings : MonoBehaviour {
 
     public Grid GetGrid()
     {
+        grid = KylesFunctions.GridValues(grid, floorMask, agentHeight, gridColour);
         return grid;
     }
 

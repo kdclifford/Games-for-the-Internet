@@ -26,6 +26,8 @@ public class AI_Script : MonoBehaviour
     private List<CNode> path = new List<CNode>();
     private bool getTerrain = false;
 
+    public int test = 1;
+
     private bool oneTime = false;
 
     // Start is called before the first frame update
@@ -53,7 +55,7 @@ public class AI_Script : MonoBehaviour
             Vector2 playerLastSeenPos = player.transform.position;
 
             //Is Player left or Right
-            float dotProb = transform.position.x - playerLastSeenPos.x;
+            //float dotProb = transform.position.x - playerLastSeenPos.x;
 
             // float test = terrainMap.GetValue(transform.position);
             int AgentGridPosX, AgentGridPosY;
@@ -63,18 +65,34 @@ public class AI_Script : MonoBehaviour
             KylesFunctions.GetXY(transform.position, terrainMap.GetOriginPos(), terrainMap.GetCellSize(), out AgentGridPosX, out AgentGridPosY);
             KylesFunctions.GetXY(player.transform.position, terrainMap.GetOriginPos(), terrainMap.GetCellSize(), out PlayerGridPosX, out PlayerGridPosY);
 
-            //if (oneTime == false)
-            //{
+            if (oneTime == false)
+            {
                 KylesFunctions.AStar(terrainMap, AgentGridPosX, AgentGridPosY, PlayerGridPosX, PlayerGridPosY, 2, false, ref path);
+                oneTime = true;
+            for (int i = 0; i < path.Count - 1; i++)
+            {
+                terrainMap.SetValue(path[i].x, path[i].y, terrainMap.GetValue(path[i].x, path[i].y), Color.blue);
+            }
+            }
 
-                for (int i = 0; i < path.Count - 1; i++)
-                {
-                    terrainMap.SetValue(path[i].x, path[i].y, terrainMap.GetValue(path[i].x, path[i].y), Color.blue);                  
-                }
+            Vector3 firstStep = terrainMap.GetWorldPosition(path[path.Count - test].x, path[path.Count - 1].y);
+            firstStep.x += 0.5f;
+            firstStep.y += 0.5f;
 
+            float dotProb = transform.position.x - firstStep.x;
 
-            
-            
+            if ((transform.position - firstStep).magnitude > 0.6f && dotProb < 0)
+            {
+                AgentVelocity = new Vector2(MaxSpeed, Body.velocity.y);
+
+            }
+            else if((transform.position - firstStep).magnitude > 0.6f && dotProb > 0)
+            {
+                AgentVelocity = new Vector2(-MaxSpeed, Body.velocity.y);
+            }
+
+            //path.Clear();
+
 
             //terrainMap.SetValue(terrainMap.GetWorldPosition(AgentGridPosX, AgentGridPosY), 5);
             //terrainMap.SetValue(terrainMap.GetWorldPosition(PlayerGridPosX, PlayerGridPosY), 7);

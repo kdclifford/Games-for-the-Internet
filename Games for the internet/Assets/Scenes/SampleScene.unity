@@ -864,7 +864,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   agentHeight: 1
-  gridColour: {r: 1, g: 0.8632076, b: 0.99540967, a: 1}
+  gridColour: {r: 0.18466751, g: 1, b: 0.023584902, a: 1}
 --- !u!1 &351446975
 GameObject:
   m_ObjectHideFlags: 0
@@ -6536,7 +6536,7 @@ MonoBehaviour:
     m_Bits: 512
   RayDistanceForward: 0.1
   RayDistanceDown: 0.1
-  SightRange: 10
+  SightRange: 17.89
   enemyTags: []
   player: {fileID: 405892716}
   jumpHeight: 400

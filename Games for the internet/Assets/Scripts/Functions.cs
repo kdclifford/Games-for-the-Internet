@@ -296,9 +296,13 @@ namespace Functions.Utils
             {
                 if (list[i].x == newNode.x && list[i].y == newNode.y)
                 {
-                    if (newNode.fCost <= list[i].fCost)
+                    if (newNode.fCost < list[i].fCost)
                     {
                         list.RemoveAt(i);
+                        return true;
+                    }
+                    else
+                    {
                         return true;
                     }
                     
@@ -313,7 +317,7 @@ namespace Functions.Utils
             node.heuristic = GetHeuristic(node.x, node.y, Mathf.FloorToInt(goal.x), Mathf.FloorToInt(goal.y));
             node.cost = GetHeuristic(node.x, node.y, Mathf.FloorToInt(start.x), Mathf.FloorToInt(start.y));
             node.parentNode = parentNode;
-            node.stepAmount = node.parentNode.stepAmount + 1;
+            node.stepAmount = node.parentNode.stepAmount + node.stepCost;
             node.fCost = node.heuristic + node.cost + node.stepAmount;
 
             if (!CheckClosedListForLowerScore(closedList, node))
@@ -333,6 +337,7 @@ namespace Functions.Utils
                 node = new CNode();
                 node.x = currentNode.x + 1;
                 node.y = currentNode.y;
+                node.stepCost = 14;
                 PopulateNode(ref node, ref parentNode, ref openList, ref closedList, start, goal);
 
 
@@ -344,6 +349,7 @@ namespace Functions.Utils
                 node = new CNode();
                 node.x = currentNode.x - 1;
                 node.y = currentNode.y;
+                node.stepCost = 14;
                 PopulateNode(ref node, ref parentNode, ref openList, ref closedList, start, goal);
 
 
@@ -354,13 +360,14 @@ namespace Functions.Utils
 
         public static void CheckUpDown(Grid terrainMap, ref CNode currentNode, ref CNode parentNode, ref List<CNode> openList, ref List<CNode> closedList, Vector2 start, Vector2 goal)
         {
-            CNode newNode;
+            CNode node;
             if (terrainMap.GetValue(currentNode.x, currentNode.y + 1) != 0)
             {
-                newNode = new CNode();
-                newNode.x = currentNode.x;
-                newNode.y = currentNode.y + 1;
-                PopulateNode(ref newNode, ref parentNode, ref openList, ref closedList, start, goal);
+                node = new CNode();
+                node.x = currentNode.x;
+                node.y = currentNode.y + 1;
+                node.stepCost = 14;
+                PopulateNode(ref node, ref parentNode, ref openList, ref closedList, start, goal);
 
 
 
@@ -368,10 +375,11 @@ namespace Functions.Utils
 
             if (terrainMap.GetValue(currentNode.x, currentNode.y - 1) != 0)
             {
-                newNode = new CNode();
-                newNode.x = currentNode.x;
-                newNode.y = currentNode.y - 1;
-                PopulateNode(ref newNode, ref parentNode, ref openList, ref closedList, start, goal);
+                node = new CNode();
+                node.x = currentNode.x;
+                node.y = currentNode.y - 1;
+                node.stepCost = 14;
+                PopulateNode(ref node, ref parentNode, ref openList, ref closedList, start, goal);
 
 
 
