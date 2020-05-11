@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     public Animator CurrentAnimation;
     private Rigidbody2D Body;
     private CapsuleCollider2D playerCollider;
+    public float jumpAmount;
 
     [SerializeField]
     private LayerMask floorMask;
@@ -42,7 +43,7 @@ public class Movement : MonoBehaviour
                 {
                     JumpAnimation();
                     //playerVelocity = new Vector2(Body.velocity.x, 10);
-                    jumpForce.y += 400.0f * 2;
+                    jumpForce.y += (jumpAmount * 100.0f) * 2;
                 }
             }
 
