@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\BoxOutline.cs" />
+    <Compile Include="Assets\BreakablePhysics.cs" />
     <Compile Include="Assets\CameraFollow.cs" />
     <Compile Include="Assets\DayandNightCycle.cs" />
     <Compile Include="Assets\Parallax.cs" />
