@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7542555399720317879}
   - component: {fileID: 7542555399720317878}
   - component: {fileID: 7542555399720317873}
+  - component: {fileID: 803497147}
   m_Layer: 8
   m_Name: MoveableBlock
   m_TagString: Untagged
@@ -108,7 +109,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9, y: 1.99}
+  m_Size: {x: 1.9, y: 1.97}
   m_EdgeRadius: 0
 --- !u!50 &7542555399720317873
 Rigidbody2D:
@@ -125,9 +126,23 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 4.06
   m_Material: {fileID: 6200000, guid: 6a39ec2b004fd484fa1981c9a928d16a, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &803497147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7542555399720317872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfbe9d720ff2e6c45be381c92b246e12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineColour1: {r: 1, g: 0, b: 0, a: 0}
+  outLineColour2: {r: 0, g: 0, b: 0, a: 0}

@@ -22,6 +22,9 @@ public class Movement : MonoBehaviour
     private Vector2 jumpForce = new Vector2();
 
     private bool FlipX = false;
+    private bool isAttacking = false;
+
+    public GameObject attackBox;
 
     // Start is called before the first frame update
     void Start()
@@ -35,9 +38,25 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Ignore collisions
+        Physics2D.IgnoreLayerCollision(9, 10);
+        Physics2D.IgnoreLayerCollision(9, 11);
+
+
+
+
+
+
         if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
-           if (isGrounded() && Input.GetKeyDown(KeyCode.Space) | Input.GetKeyDown(KeyCode.W))
+           
+
+
+
+
+          
+
+              if (isGrounded() && Input.GetKeyDown(KeyCode.Space) | Input.GetKeyDown(KeyCode.W))
             {
                 if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Jump") | isGrounded())
                 {
@@ -47,12 +66,24 @@ public class Movement : MonoBehaviour
                 }
             }
 
+              else if (Input.GetKeyDown(KeyCode.J) && !isAttacking)
+            {
+                isAttacking = true;
+                StartCoroutine(DoAttack());
+                
+                Body.velocity = new Vector2(0, Body.velocity.y);
+                playerVelocity = new Vector2(0, Body.velocity.y);
+
+
+            }
+
             else if (Input.GetKey(KeyCode.RightArrow) | Input.GetKey(KeyCode.D))
             {
                 playerVelocity = new Vector2(MaxSpeed, Body.velocity.y);
                 FlipDirectionRight();
                 MoveAnimation();
             }
+            
 
             else if (Input.GetKey(KeyCode.LeftArrow) | Input.GetKey(KeyCode.A))
             {
@@ -60,6 +91,8 @@ public class Movement : MonoBehaviour
                 FlipDirectionLeft();
                 MoveAnimation();
             }
+            
+
 
 
             else
@@ -69,35 +102,49 @@ public class Movement : MonoBehaviour
                 playerVelocity = new Vector2(0, Body.velocity.y);
                 //isJumping = 0;
             }
+
+
+
+            //else
+            //{
+            //    IdleAnimation();
+            //    Body.velocity = new Vector2(0, Body.velocity.y);
+            //    playerVelocity = new Vector2(0, Body.velocity.y);
+            //    // isJumping = 0;
+            //}
+
+          
         }
 
+       
 
-        //else
-        //{
-        //    IdleAnimation();
-        //    Body.velocity = new Vector2(0, Body.velocity.y);
-        //    playerVelocity = new Vector2(0, Body.velocity.y);
-        //    // isJumping = 0;
-        //}
+           
+        
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {           
-            AttackAnimation();
-        }
+    }
 
-
+    IEnumerator DoAttack()
+    {
+        AttackAnimation();
+        yield return new WaitForSeconds(0.3f);
+        attackBox.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        attackBox.SetActive(false);
+        isAttacking = false;
     }
 
     void FixedUpdate()
     {
-        //m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-        Body.velocity = Vector3.SmoothDamp(Body.velocity, playerVelocity, ref m_Velocity, 0.5f);
-        Body.AddForce( new Vector2( jumpForce.x, jumpForce.y));
-        jumpForce = Vector2.zero;
-        // Body.velocity = Vector3.SmoothDamp(Body.velocity, new Vector2(Body.velocity.x - (isMovingLeft * 10), Body.velocity.y), ref m_Velocity, 0.5f);
-        // Body.velocity = (new Vector2(Body.velocity.x - (isMovingLeft ), Body.velocity.y));;
-        // Body.MovePosition( new Vector3(transform.position.x, transform.position.y + (isJumping)));
-
+        if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            //m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+            Body.velocity = Vector3.SmoothDamp(Body.velocity, playerVelocity, ref m_Velocity, 0.5f);
+            Body.AddForce(new Vector2(jumpForce.x, jumpForce.y));
+            jumpForce = Vector2.zero;
+            // Body.velocity = Vector3.SmoothDamp(Body.velocity, new Vector2(Body.velocity.x - (isMovingLeft * 10), Body.velocity.y), ref m_Velocity, 0.5f);
+            // Body.velocity = (new Vector2(Body.velocity.x - (isMovingLeft ), Body.velocity.y));;
+            // Body.MovePosition( new Vector3(transform.position.x, transform.position.y + (isJumping)));
+        }
     }
 
     private bool isGrounded()
