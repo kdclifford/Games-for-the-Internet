@@ -68,7 +68,6 @@
     <Compile Include="Assets\CameraFollow.cs" />
     <Compile Include="Assets\DayandNightCycle.cs" />
     <Compile Include="Assets\DestroyBlock.cs" />
-    <Compile Include="Assets\Hit.cs" />
     <Compile Include="Assets\Parallax.cs" />
     <Compile Include="Assets\Scripts\AI_Script.cs" />
     <Compile Include="Assets\Scripts\AStar.cs" />

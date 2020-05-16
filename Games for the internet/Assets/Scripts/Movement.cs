@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
     public float jumpAmount;
 
     [SerializeField]
-    private LayerMask floorMask;
+    private List<LayerMask> floorMask;
     public float hoverAmount;
     private Vector3 m_Velocity = Vector3.zero;
 
@@ -38,16 +38,23 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Ignore collisions
-        Physics2D.IgnoreLayerCollision(9, 10);
-        Physics2D.IgnoreLayerCollision(9, 11);
+     
+        if (isGrounded() && !isAttacking && Input.GetKeyDown(KeyCode.J))
+        {
+            isAttacking = true;
+            
+            StartCoroutine(DoAttack());
+
+            Body.velocity = new Vector2(0, Body.velocity.y);
+            playerVelocity = new Vector2(0, Body.velocity.y);
+
+
+        }
 
 
 
 
-
-
-        if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (!isAttacking )
         {
            
 
@@ -66,16 +73,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-              else if (Input.GetKeyDown(KeyCode.J) && !isAttacking)
-            {
-                isAttacking = true;
-                StartCoroutine(DoAttack());
-                
-                Body.velocity = new Vector2(0, Body.velocity.y);
-                playerVelocity = new Vector2(0, Body.velocity.y);
-
-
-            }
+              
 
             else if (Input.GetKey(KeyCode.RightArrow) | Input.GetKey(KeyCode.D))
             {
@@ -91,10 +89,6 @@ public class Movement : MonoBehaviour
                 FlipDirectionLeft();
                 MoveAnimation();
             }
-            
-
-
-
             else
             {
                 IdleAnimation();
@@ -102,6 +96,10 @@ public class Movement : MonoBehaviour
                 playerVelocity = new Vector2(0, Body.velocity.y);
                 //isJumping = 0;
             }
+
+
+
+
 
 
 
@@ -113,20 +111,23 @@ public class Movement : MonoBehaviour
             //    // isJumping = 0;
             //}
 
-          
+
         }
+       
+      
+        
+
 
        
+       
 
-           
-        
 
     }
 
     IEnumerator DoAttack()
     {
         AttackAnimation();
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.4f);
         attackBox.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         attackBox.SetActive(false);
@@ -135,7 +136,7 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (!isAttacking)
         {
             //m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
             Body.velocity = Vector3.SmoothDamp(Body.velocity, playerVelocity, ref m_Velocity, 0.5f);
@@ -150,22 +151,33 @@ public class Movement : MonoBehaviour
     private bool isGrounded()
     {
         float extraHieght = 0.1f;
-        RaycastHit2D hit = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, extraHieght, floorMask);
-        Color rayColour;
-        if(hit.collider != null)
+        RaycastHit2D hit;
+        foreach (LayerMask node in floorMask)
         {
-            rayColour = Color.green;
-        }
-       else
-        {
-            rayColour = Color.red;
-        }
-        Debug.DrawRay(playerCollider.bounds.center + new Vector3(playerCollider.bounds.extents.x, 0), Vector2.down * (playerCollider.bounds.extents.y + extraHieght), rayColour);
-        Debug.DrawRay(playerCollider.bounds.center - new Vector3(playerCollider.bounds.extents.x, 0), Vector2.down * (playerCollider.bounds.extents.y + extraHieght), rayColour);
-        Debug.DrawRay(playerCollider.bounds.center - new Vector3(playerCollider.bounds.extents.x, playerCollider.bounds.extents.y + extraHieght), Vector3.right * (playerCollider.bounds.extents.x * 2), rayColour);
-       // Debug.Log(hit.collider);
 
-        return hit.collider != null;
+            hit = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, extraHieght, node);
+            if (hit)
+            {
+                Color rayColour;
+                if (hit.collider != null)
+                {
+                    rayColour = Color.green;
+                }
+                else
+                {
+                    rayColour = Color.red;
+                }
+                Debug.DrawRay(playerCollider.bounds.center + new Vector3(playerCollider.bounds.extents.x, 0), Vector2.down * (playerCollider.bounds.extents.y + extraHieght), rayColour);
+                Debug.DrawRay(playerCollider.bounds.center - new Vector3(playerCollider.bounds.extents.x, 0), Vector2.down * (playerCollider.bounds.extents.y + extraHieght), rayColour);
+                Debug.DrawRay(playerCollider.bounds.center - new Vector3(playerCollider.bounds.extents.x, playerCollider.bounds.extents.y + extraHieght), Vector3.right * (playerCollider.bounds.extents.x * 2), rayColour);
+                // Debug.Log(hit.collider);
+                return hit.collider != null;
+            }
+        }
+
+        return false;
+
+        
 
     }
 

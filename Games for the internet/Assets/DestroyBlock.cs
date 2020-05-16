@@ -27,7 +27,7 @@ public class DestroyBlock : MonoBehaviour
 
             //Set position of barrel
             broken.transform.position = transform.position;
-
+            broken.transform.rotation = transform.rotation;
             //Destory old barrel
             Destroy(gameObject);
 
