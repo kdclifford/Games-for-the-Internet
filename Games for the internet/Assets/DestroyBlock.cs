@@ -21,13 +21,14 @@ public class DestroyBlock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health == 0)
+        if (health <= 0)
         {
             GameObject broken = (GameObject)Instantiate(brokenPrefab);
 
             //Set position of barrel
             broken.transform.position = transform.position;
             broken.transform.rotation = transform.rotation;
+            broken.transform.localScale = transform.localScale;
             //Destory old barrel
             Destroy(gameObject);
 
