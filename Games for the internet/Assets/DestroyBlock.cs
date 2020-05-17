@@ -7,12 +7,15 @@ public class DestroyBlock : MonoBehaviour
     // Start is called before the first frame update
 
     public Object brokenPrefab;
-    public Color colour1;
 
-    public Color colour2;
+    
+   private Color colour1 = new Color(0.8f, 0.8f, 0.8f, 1.0f);
+
+
+   private Color colour2 = new Color(0.5f, 0.5f, 0.5f, 1.0f);
 
     public int health = 3;
-   
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         health--;

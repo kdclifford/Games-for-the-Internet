@@ -12522,7 +12522,7 @@ GameObject:
   - component: {fileID: 1291979712}
   - component: {fileID: 1291979709}
   - component: {fileID: 1291979713}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Mantis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12683,7 +12683,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291979705}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: e04af14ddb02de1449bc882f1c6ac0f4, type: 2}
   m_IsTrigger: 0
@@ -12716,8 +12716,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brokenPrefab: {fileID: 5032094347580774396, guid: d4223ba059d12824fa489b4711ddc125,
     type: 3}
-  colour1: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
-  colour2: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
   health: 3
 --- !u!1 &1380154989
 GameObject:
@@ -13502,7 +13500,8 @@ GameObject:
   - component: {fileID: 1948711546}
   - component: {fileID: 1948711549}
   - component: {fileID: 1948711548}
-  m_Layer: 0
+  - component: {fileID: 1948711547}
+  m_Layer: 14
   m_Name: Beetle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13547,8 +13546,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -3665364186405681620, guid: cd0f549116c642e43a8ccefa958d23af,
+  m_SortingOrder: 5
+  m_Sprite: {fileID: 7801186258100458736, guid: b242036bac85f5a44b45b683cc61a53b,
     type: 3}
   m_Color: {r: 0.8490566, g: 0.020874327, b: 0, a: 1}
   m_FlipX: 1
@@ -13557,7 +13556,7 @@ SpriteRenderer:
   m_Size: {x: 1.2666667, y: 0.93333334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1948711545
@@ -13593,6 +13592,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1948711547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948711543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765f9cb81c15bf64eba31dbf4f25f158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brokenPrefab: {fileID: 7922907284398334572, guid: 92aad6e93c3a1c84b9832c20665706b9,
+    type: 3}
+  health: 3
 --- !u!70 &1948711548
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -13600,14 +13614,14 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948711543}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.16017042, y: -0.0145612415}
-  m_Size: {x: 0.9463274, y: 0.49650708}
+  m_Offset: {x: 0.025004264, y: -0.059616458}
+  m_Size: {x: 1.3067718, y: 0.40640056}
   m_Direction: 1
 --- !u!50 &1948711549
 Rigidbody2D:
