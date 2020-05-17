@@ -1,0 +1,854 @@
+fileFormatVersion: 2
+guid: 89fd0d6bf4d394849932a494f62e2c93
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1090426500553508118
+    second: slime-Jump2
+  - first:
+      213: -717017519403210152
+    second: slime-Dead7
+  - first:
+      213: -3501600730508161030
+    second: slime-Body_2
+  - first:
+      213: -2679811531637657154
+    second: slime-Dead4
+  - first:
+      213: 1238799117121309060
+    second: slime-Jump3
+  - first:
+      213: -4844891501695419181
+    second: slime-Body_5
+  - first:
+      213: 5834202249044151858
+    second: slime-Jump0
+  - first:
+      213: -5675632171239212346
+    second: slime-Jump1
+  - first:
+      213: -150497924550743555
+    second: slime_Jump2
+  - first:
+      213: 359235204436408297
+    second: slime-Dead5
+  - first:
+      213: 8041084490647953174
+    second: slime-Jump3
+  - first:
+      213: 6273558937387541417
+    second: slime-Idle3
+  - first:
+      213: -5851536269051495314
+    second: slime-Move1
+  - first:
+      213: 4942502681802564864
+    second: slime-Move2
+  - first:
+      213: -5558402419353665849
+    second: slime-Idle1
+  - first:
+      213: -7494966412188290725
+    second: slime-Jump4
+  - first:
+      213: 2113866329444886071
+    second: slime-Move0
+  - first:
+      213: 4575542192827616571
+    second: slime-Body_17
+  - first:
+      213: 9156625857149475187
+    second: slime-Move1
+  - first:
+      213: -4614470536268082116
+    second: slime-Attack0
+  - first:
+      213: -3404930919103660884
+    second: slime-Attack2
+  - first:
+      213: 328084136001331491
+    second: slime-Attack3
+  - first:
+      213: -8476247129757312199
+    second: slime-Hurt0
+  - first:
+      213: -7864456029272438880
+    second: slime-Hurt2
+  - first:
+      213: -8603592824341742230
+    second: slime-Jump2
+  - first:
+      213: -1820447992804863506
+    second: slime-Dead7
+  - first:
+      213: 7092074813800914996
+    second: slime-Body_2
+  - first:
+      213: -3958556958004389740
+    second: slime-Dead4
+  - first:
+      213: 7220031966503296993
+    second: slime-Jump3
+  - first:
+      213: 1710429254563984599
+    second: slime-Body_5
+  - first:
+      213: -7802519860938481943
+    second: slime-Jump0
+  - first:
+      213: 7249371805297625171
+    second: slime-Jump1
+  - first:
+      213: -8650620952724104418
+    second: slime_Jump2
+  - first:
+      213: 8518729406866259722
+    second: slime-Dead5
+  - first:
+      213: -7036092827608310990
+    second: slime-Jump3
+  - first:
+      213: 3648369754077026207
+    second: slime-Idle3
+  - first:
+      213: 7860025445669169415
+    second: slime-Move1
+  - first:
+      213: 2192950983401845632
+    second: slime-Move2
+  - first:
+      213: 4971039919282865896
+    second: slime-Idle1
+  - first:
+      213: 2928338219013729592
+    second: slime-Jump4
+  - first:
+      213: 449232654607157997
+    second: slime-Move0
+  - first:
+      213: 570273480146414132
+    second: slime-Body_17
+  - first:
+      213: 2458113568070594935
+    second: slime-Move1
+  - first:
+      213: -5968994574269795033
+    second: slime-Attack0
+  - first:
+      213: 5321498533536123927
+    second: slime-Attack2
+  - first:
+      213: 3971049748817341338
+    second: slime-Attack3
+  - first:
+      213: 1671924085412256154
+    second: slime-Hurt0
+  - first:
+      213: 5156095797558896428
+    second: slime-Hurt2
+  - first:
+      213: -2648033590831382874
+    second: slime-Attack1
+  - first:
+      213: -6839816825996304554
+    second: slime-Dead3
+  - first:
+      213: -1711110482539930810
+    second: slime-Attack4
+  - first:
+      213: 335820766713587897
+    second: slime-Hurt3
+  - first:
+      213: 6774042650456020358
+    second: slime-Hurt1
+  - first:
+      213: -44793218392348515
+    second: slime-Hurt3
+  - first:
+      213: 2169348843092530248
+    second: slime-Dead2
+  - first:
+      213: 1465260384133496613
+    second: slime-Dead4
+  - first:
+      213: 7249371805297625171
+    second: slime-Body_7
+  - first:
+      213: -1820447992804863506
+    second: slime-Body_1
+  - first:
+      213: -3958556958004389740
+    second: slime-Jump1
+  - first:
+      213: -8650620952724104418
+    second: slime-Body_8
+  - first:
+      213: 8518729406866259722
+    second: slime-Idle0
+  - first:
+      213: -7036092827608310990
+    second: slime-Body_10
+  - first:
+      213: 2928338219013729592
+    second: slime-Idle2
+  - first:
+      213: 2458113568070594935
+    second: slime-Move3
+  - first:
+      213: 1529660014145344849
+    second: slime-Hurt3
+  - first:
+      213: 8349609722728751250
+    second: slime-Hurt3
+  - first:
+      213: 1412709968510322351
+    second: slime-Dead2
+  - first:
+      213: 8535028308018213208
+    second: slime-Body_32
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: slime-Jump2
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 76
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6db209f8e5e99880800000000000000
+      internalID: -8603592824341742230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Jump1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 76
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4985ff68b616019c0800000000000000
+      internalID: -3958556958004389740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Jump3
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 76
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1efd466f1d4b23460800000000000000
+      internalID: 7220031966503296993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Jump0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 76
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eed4d7a681e7b390800000000000000
+      internalID: -7802519860938481943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Idle0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 51
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0fffe9e24b983670800000000000000
+      internalID: 8518729406866259722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Idle3
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 51
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f975a0126fc91a230800000000000000
+      internalID: 3648369754077026207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Move1
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 51
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70964a6af7b641d60800000000000000
+      internalID: 7860025445669169415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Move2
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 51
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 083b287fc4dee6e10800000000000000
+      internalID: 2192950983401845632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Idle1
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 51
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e64429087eacf440800000000000000
+      internalID: 4971039919282865896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Idle2
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 51
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83d638e581c83a820800000000000000
+      internalID: 2928338219013729592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Move0
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 51
+        width: 26
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dea8d5f18befb3600800000000000000
+      internalID: 449232654607157997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Move3
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 51
+        width: 26
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7717a6a3449fc1220800000000000000
+      internalID: 2458113568070594935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Attack0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 26
+        width: 29
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7253a6e4f0fd92da0800000000000000
+      internalID: -5968994574269795033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Attack2
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 26
+        width: 29
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71cce24c8b2c9d940800000000000000
+      internalID: 5321498533536123927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Attack3
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 26
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 321ecce88c69d8400800000000000000
+      internalID: 328084136001331491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Hurt0
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 26
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93b146205225e5a80800000000000000
+      internalID: -8476247129757312199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Hurt2
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 26
+        width: 29
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a78987b8e6dbd290800000000000000
+      internalID: -7864456029272438880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Attack1
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 26
+        width: 29
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ae7131aa7b404bd0800000000000000
+      internalID: -2648033590831382874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Dead3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 1
+        width: 30
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65f10cde5d61411a0800000000000000
+      internalID: -6839816825996304554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Attack4
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 26
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64b92ccf41ae048e0800000000000000
+      internalID: -1711110482539930810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Dead0
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 1
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 155904aada17a3510800000000000000
+      internalID: 1529660014145344849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Hurt1
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 26
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 685d6c176eb320e50800000000000000
+      internalID: 6774042650456020358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Hurt3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29025600ec5cfd370800000000000000
+      internalID: 8349609722728751250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Dead2
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 1
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa606b34b34fa9310800000000000000
+      internalID: 1412709968510322351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Dead4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 1
+        width: 30
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52fbabb5e86a55410800000000000000
+      internalID: 1465260384133496613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime-Body_32
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 13
+        width: 1
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 851345f8603827670800000000000000
+      internalID: 8535028308018213208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
