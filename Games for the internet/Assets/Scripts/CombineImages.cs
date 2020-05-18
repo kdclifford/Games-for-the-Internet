@@ -9,8 +9,8 @@ public class CombineImages : MonoBehaviour
     public Texture2D textureBody;
     public Texture2D NewTexture;
 
-    public Color col1;
-    public Color col2;
+    public Color EyeColour;
+    public Color BodyColour;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +38,9 @@ public class CombineImages : MonoBehaviour
 
     public Texture2D MergeImage(Texture2D Body, Texture2D Eyes, Texture2D NewText)
     {
-       
+        BodyColour.a = 1f;
+        EyeColour.a = 1f;
+
         int startX = 0;
         int startY = 0;
 
@@ -51,11 +53,11 @@ public class CombineImages : MonoBehaviour
                 Color wmColor = Eyes.GetPixel(x, y);
                 if(wmColor.a != 0)
                 {
-                    NewText.SetPixel(x, y, wmColor * col1);
+                    NewText.SetPixel(x, y, wmColor * EyeColour);
                 }
                 else
                 {
-                    NewText.SetPixel(x, y, bgColor * col2);
+                    NewText.SetPixel(x, y, bgColor * BodyColour);
                 }
 
 
