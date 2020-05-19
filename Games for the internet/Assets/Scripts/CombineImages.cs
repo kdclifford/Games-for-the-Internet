@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CombineImages : MonoBehaviour
 {
@@ -9,14 +10,25 @@ public class CombineImages : MonoBehaviour
     public Texture2D textureBody;
     public Texture2D NewTexture;
 
-    public Color EyeColour;
-    public Color BodyColour;
+    private Color EyeColour;
+    private Color BodyColour;
+
+    public GameObject bodyObject;
+    public GameObject eyeObject;
 
     // Start is called before the first frame update
-    void Start()
+    public void Combine()
     {
+        EyeColour = eyeObject.GetComponent<SpriteRenderer>().color;
+        BodyColour = bodyObject.GetComponent<SpriteRenderer>().color;
         NewTexture = MergeImage(textureBody, textureEye, NewTexture); 
     }
+
+    public void SwitcLevel()
+    {
+        SceneManager.LoadScene("Level 1");
+    }
+
 
     // Update is called once per frame
   
@@ -38,8 +50,8 @@ public class CombineImages : MonoBehaviour
 
     public Texture2D MergeImage(Texture2D Body, Texture2D Eyes, Texture2D NewText)
     {
-        BodyColour.a = 1f;
-        EyeColour.a = 1f;
+        //BodyColour.a = 1f;
+        //EyeColour.a = 1f;
 
         int startX = 0;
         int startY = 0;
@@ -51,7 +63,7 @@ public class CombineImages : MonoBehaviour
             {
                 Color bgColor = Body.GetPixel(x, y);
                 Color wmColor = Eyes.GetPixel(x, y);
-                if(wmColor.a != 0)
+                if (wmColor.a > 0.9f)
                 {
                     NewText.SetPixel(x, y, wmColor * EyeColour);
                 }

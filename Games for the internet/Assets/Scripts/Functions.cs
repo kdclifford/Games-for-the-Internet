@@ -112,14 +112,18 @@ namespace Functions.Utils
                         grid.SetValue(grid.GetWorldPosition(x, y), 0, gridColour);
                     }
                     //This is a air block but is above the walkable ground = 1
-                    else if (Physics2D.Raycast(new Vector2(gridxy.x + 0.5f, gridxy.y + 0.5f), Vector2.down, 0.1f + playerHeight, floorMask))
+                    else if (Physics2D.Raycast(new Vector2(gridxy.x + 0.5f, gridxy.y + 0.5f), Vector2.down, 2.6f, floorMask))
                     {
                         grid.SetValue(grid.GetWorldPosition(x, y), 1, gridColour);
                     }
+                    //else if (Physics2D.Raycast(new Vector2(gridxy.x + 0.5f, gridxy.y + 0.5f), Vector2.down, 0.1f + playerHeight, floorMask))
+                    //{
+                    //    grid.SetValue(grid.GetWorldPosition(x, y), 1, gridColour);
+                    //}
                     //Air equals 2
                     else
                     {
-                        grid.SetValue(grid.GetWorldPosition(x, y), 2, gridColour);
+                        grid.SetValue(grid.GetWorldPosition(x, y), 0, gridColour);
                     }
                 }
             }

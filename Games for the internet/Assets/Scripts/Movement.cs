@@ -127,9 +127,9 @@ public class Movement : MonoBehaviour
     IEnumerator DoAttack()
     {
         AttackAnimation();
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.3f);
         attackBox.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
         attackBox.SetActive(false);
         isAttacking = false;
     }

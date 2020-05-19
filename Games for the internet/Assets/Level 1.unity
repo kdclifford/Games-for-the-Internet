@@ -5215,9 +5215,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27139ddfc6cf1e44dbfa146e2abd9355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridPosition: {x: -11, y: 0}
+  gridPosition: {x: -30, y: 0}
   gridSize: 1
-  gridWidth: 22
+  gridWidth: 100
   gridHeight: 11
   floorMask:
     serializedVersion: 2
@@ -5544,54 +5544,6 @@ Transform:
   - {fileID: 2095588714}
   m_Father: {fileID: 0}
   m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &313332580
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 313332582}
-  - component: {fileID: 313332581}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &313332581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 313332580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18766b17bdaa4d04d9a27d6adc3fba7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textureEye: {fileID: 2800000, guid: 4cdc8f663dfeab34991caeed887fd8af, type: 3}
-  textureBody: {fileID: 2800000, guid: 89fd0d6bf4d394849932a494f62e2c93, type: 3}
-  NewTexture: {fileID: 2800000, guid: 4d12f574ca6533245899bd38ea0143c6, type: 3}
-  EyeColour: {r: 1, g: 0, b: 0, a: 0}
-  BodyColour: {r: 0, g: 0, b: 0, a: 0}
---- !u!4 &313332582
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 313332580}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.4, y: 2.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &351446975
 GameObject:
@@ -12577,7 +12529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1291979706
 Animator:
   serializedVersion: 3
