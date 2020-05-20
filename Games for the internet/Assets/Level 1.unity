@@ -5217,14 +5217,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPosition: {x: -30, y: 0}
   gridSize: 1
-  gridWidth: 100
-  gridHeight: 11
+  gridWidth: 1000
+  gridHeight: 100
   floorMask:
     serializedVersion: 2
     m_Bits: 256
   agentHeight: 1
   gridColour: {r: 0.18466751, g: 1, b: 0.023584902, a: 1}
-  showGrid: 0
+  showGrid: 1
 --- !u!1001 &167646847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10421,7 +10421,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.025668144, y: -0.1619916}
+  m_Offset: {x: -0.025668144, y: -0.0619916}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -10489,7 +10489,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.050000038, y: -0.16941114}
+  m_Offset: {x: -0.050000038, y: -0.0694111}
   m_Size: {x: 1.5000007, y: 0.8538301}
   m_Direction: 1
 --- !u!1 &489065180
@@ -12529,7 +12529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1291979706
 Animator:
   serializedVersion: 3
@@ -12589,7 +12589,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 6
   m_Sprite: {fileID: 930101872328489080, guid: ef8a8f3b114578342a7a09ec2b14f53b, type: 3}
-  m_Color: {r: 0.25943398, g: 1, b: 0.67371374, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -12633,7 +12633,7 @@ MonoBehaviour:
     m_Bits: 512
   RayDistanceForward: 0.1
   RayDistanceDown: 0.1
-  SightRange: 9.69
+  SightRange: 18.5
   enemyTags: []
   player: {fileID: 405892716}
   jumpHeight: 10

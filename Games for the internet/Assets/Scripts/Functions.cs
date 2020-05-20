@@ -37,7 +37,7 @@ namespace Functions.Utils
         }
 
         //Check if Grounded
-        public static bool isGrounded2D(CapsuleCollider2D agentCollider, float rayFloorDistance, LayerMask groundMask)
+        public static bool isGrounded2D(Collider2D agentCollider, float rayFloorDistance, LayerMask groundMask)
         {
             RaycastHit2D hit = Physics2D.BoxCast(agentCollider.bounds.center, agentCollider.bounds.size, 0f, Vector2.down, rayFloorDistance, groundMask);
             Color rayColour;

@@ -63,22 +63,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\FollowMouse.cs" />
     <Compile Include="Assets\Scripts\AI_Script.cs" />
     <Compile Include="Assets\Scripts\AStar.cs" />
+    <Compile Include="Assets\Scripts\AiFSM.cs" />
+    <Compile Include="Assets\Scripts\AiStates.cs" />
     <Compile Include="Assets\Scripts\BoxOutline.cs" />
     <Compile Include="Assets\Scripts\BreakablePhysics.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\CombineImages.cs" />
     <Compile Include="Assets\Scripts\DayandNightCycle.cs" />
     <Compile Include="Assets\Scripts\DestroyBlock.cs" />
+    <Compile Include="Assets\Scripts\FollowMouse.cs" />
     <Compile Include="Assets\Scripts\Functions.cs" />
     <Compile Include="Assets\Scripts\Grid.cs" />
     <Compile Include="Assets\Scripts\GridSettings.cs" />
     <Compile Include="Assets\Scripts\MouseColour.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\Parallax.cs" />
-    <Compile Include="Assets\ToggleFunctions.cs" />
+    <Compile Include="Assets\Scripts\ToggleFunctions.cs" />
     <None Include="Assets\Taiga-Asset-Pack_v2_vnitti\Readme.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Kyle/Documents/GitHub/Games-for-the-Internet/Games for the internet/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
