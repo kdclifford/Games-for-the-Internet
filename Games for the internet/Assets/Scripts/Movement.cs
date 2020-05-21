@@ -26,6 +26,8 @@ public class Movement : MonoBehaviour
 
     public GameObject attackBox;
 
+    public GameObject dropCollider;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,11 +77,32 @@ public class Movement : MonoBehaviour
 
               
 
-            else if (Input.GetKey(KeyCode.RightArrow) | Input.GetKey(KeyCode.D))
+            else if (Input.GetKey(KeyCode.DownArrow) | Input.GetKey(KeyCode.S))
+            {
+                playerVelocity = new Vector2(0, -MaxSpeed);
+                dropCollider.SetActive(true);
+                GetComponent<CapsuleCollider2D>().enabled = false;
+                GetComponent<BoxCollider2D>().enabled = false;
+                DropAnimation();
+            }
+              else
+            {
+                GetComponent<CapsuleCollider2D>().enabled = true;
+                GetComponent<BoxCollider2D>().enabled = true;
+                dropCollider.SetActive(false);
+            }
+
+            if (Input.GetKey(KeyCode.RightArrow) | Input.GetKey(KeyCode.D))
             {
                 playerVelocity = new Vector2(MaxSpeed, Body.velocity.y);
                 FlipDirectionRight();
-                MoveAnimation();
+                if (Input.GetKey(KeyCode.DownArrow) | Input.GetKey(KeyCode.S))
+                {
+                }
+                else
+                {
+                    MoveAnimation();
+                }
             }
             
 
@@ -87,14 +110,27 @@ public class Movement : MonoBehaviour
             {
                 playerVelocity = new Vector2(-MaxSpeed, Body.velocity.y);
                 FlipDirectionLeft();
-                MoveAnimation();
+                if (Input.GetKey(KeyCode.DownArrow) | Input.GetKey(KeyCode.S))
+                {
+                }
+                else
+                {
+                    MoveAnimation();
+                }
             }
             else
             {
+                if (Input.GetKey(KeyCode.DownArrow) | Input.GetKey(KeyCode.S))
+                {
+                }
+                else
+                {
                 IdleAnimation();
                 Body.velocity = new Vector2(0, Body.velocity.y);
                 playerVelocity = new Vector2(0, Body.velocity.y);
                 //isJumping = 0;
+                    
+                }
             }
 
 
@@ -221,5 +257,10 @@ public class Movement : MonoBehaviour
     void JumpAnimation()
     {
         CurrentAnimation.SetInteger("AnimationPlayer", 3);
+    }
+
+    void DropAnimation()
+    {
+        CurrentAnimation.SetInteger("AnimationPlayer", 4);
     }
 }
