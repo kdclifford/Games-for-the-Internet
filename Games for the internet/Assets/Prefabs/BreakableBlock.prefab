@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4258618676561211093}
   - component: {fileID: 4258618676561211088}
   - component: {fileID: 4939889035674977054}
+  - component: {fileID: 5589103636013468929}
   m_Layer: 13
   m_Name: BreakableBlock
   m_TagString: Untagged
@@ -125,9 +126,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brokenPrefab: {fileID: 6505861972545381912, guid: 5eed217c2c81adb4695fb70b063dfd37,
     type: 3}
-  colour1: {r: 0.75686276, g: 0.75686276, b: 0.75686276, a: 1}
-  colour2: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
-  health: 3
 --- !u!50 &4939889035674977054
 Rigidbody2D:
   serializedVersion: 4
@@ -149,3 +147,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5589103636013468929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4258618676561211092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f267a695a567ac41b9a3711a0f09807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canFly: 0
+  jumpHeight: 0
+  speed: 0
+  health: 3
+  sightRange: 0

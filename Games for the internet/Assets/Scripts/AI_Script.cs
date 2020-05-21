@@ -1,33 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Functions.Utils;
+using AiFunctions.Utils;
 using UnityEngine;
 
 public class AI_Script : MonoBehaviour
 {
-    
-    public LayerMask floorMask;
-    public LayerMask playerMask;
     public float RayDistanceForward;
     public float RayDistanceDown;
-    public float SightRange;
     public List<string> enemyTags;
-    private float MaxSpeed = 10.0f;
     public GameObject player;
-    public float jumpHeight;
 
-   
 
-    private List<CNode> path = new List<CNode>();
-    private bool getTerrain = false;
 
-    public int test = 1;
-    public float radius;
+    //private List<CNode> path = new List<CNode>();
 
-    private bool oneTime = false;
+   // public float radius;
+
+  
     private bool lastSeen = false;
-    [SerializeField]
-    private int gridCount = 1;
+  
 
     // Start is called before the first frame update
 
@@ -37,22 +29,18 @@ public class AI_Script : MonoBehaviour
     private int PlayerLastGridPosX, PlayerLastGridPosY;
 
     // Update is called once per frame
-  public bool ChasePlayer(GameObject insectObj, Grid terrainMap )
+    public bool FindPath(GameObject insectObj, Grid terrainMap, float sightRange, ref List<CNode> path)
     {
         Collider2D AgentCollider = insectObj.GetComponent<CapsuleCollider2D>();
         Rigidbody2D Body = insectObj.GetComponent<Rigidbody2D>();
 
-        bool isGrounded = KylesFunctions.isGrounded2D(AgentCollider, RayDistanceDown, floorMask);
-           // bool isNextToWall = KylesFunctions.IsNextToWall2D(transform.localScale.x, AgentCollider, RayDistanceForward, floorMask);
-      
+       // bool isGrounded = KylesFunctions.isGrounded2D(AgentCollider, RayDistanceDown, floorMask);
+        // bool isNextToWall = KylesFunctions.IsNextToWall2D(transform.localScale.x, AgentCollider, RayDistanceForward, floorMask);
 
-        if (SightSphere(AgentCollider))
+
+        if (AiMaths.SightSphere(AgentCollider, sightRange))
         {
             Vector3 playerLastSeenPos;
-
-
-
-
 
 
             KylesFunctions.GetXY(player.transform.position, terrainMap.GetOriginPos(), terrainMap.GetCellSize(), out PlayerGridPosX, out PlayerGridPosY);
@@ -66,7 +54,6 @@ public class AI_Script : MonoBehaviour
 
                 // float test = terrainMap.GetValue(transform.position);
                 lastSeen = false;
-                gridCount = 1;
                 path.Clear();
 
             }
@@ -103,97 +90,39 @@ public class AI_Script : MonoBehaviour
 
                 float dotProb = AgentCollider.bounds.center.x - firstStep.x;
                 float distanceFromNode = (new Vector3(AgentCollider.bounds.center.x, (AgentCollider.bounds.center.y - AgentCollider.bounds.extents.y) + 0.5f, 0) - firstStep).magnitude;
-                float yVelocity = Body.velocity.y;
-
-                if (distanceFromNode >= radius && dotProb < 0)
-                {
-
-
-                    Vector3 AgentScale = transform.localScale;
-                    AgentScale.x = 1;
-                    transform.localScale = AgentScale;
-
-
-                    if (firstStep.y > agentNewHieght.y + 0.1f)
-                    {
-                        if (isGrounded)
-                        {
-                            Body.velocity = Vector2.up * jumpHeight;
-                            //jumpForce.y += jumpHeight;
-                            //jump = false;
-                        }
-                        //else if (isGrounded && !jump)
-                        //{
-                        //    // jumpForce.y = 0;
-                        //    jump = true;
-                        //}
-                    }
-                    else
-                    {
-                        AgentVelocity = new Vector2(MaxSpeed * distanceFromNode, 0);
-                    }
 
 
 
-                }
-                else if (distanceFromNode >= radius && dotProb > 0)
-                {
-                    Vector3 AgentScale = transform.localScale;
-                    AgentScale.x = -1;
-                    transform.localScale = AgentScale;
-
-                    if (firstStep.y > agentNewHieght.y + 0.1f)
-                    {
-                        if (isGrounded && jump)
-                        {
-                            Body.velocity = Vector2.up * jumpHeight;
-                            //jumpForce.y += jumpHeight;
-                            jump = false;
-                        }
-                        else if (isGrounded && !jump)
-                        {
-                            // jumpForce.y = 0;
-                            jump = true;
-                        }
-                    }
-                    else
-                    {
-                    AgentVelocity = new Vector2(-MaxSpeed * distanceFromNode, 0);
-                    }
 
 
-                }
-                else
-                {
-                    //Body.velocity = new Vector2(0, Body.velocity.y);
-                    //AgentVelocity = new Vector2(0, Body.velocity.y);
-
-                    path.Remove(path[path.Count - 1]);
-
-                    //if (gridCount + 1 < path.Count)
-                    //{
-                    //    gridCount++;
-                    //}
-
-                }
             }
+            else
+            {
+
+
+                path.Remove(path[path.Count - 1]);
 
 
 
-
-
-
-
-
-
-
-            return true;
+            
         }
+
+
+
+
+
+
+
+
+
+
+        return true;
+    }
         else
         {
-            Body.velocity = new Vector2(0, Body.velocity.y);
-            AgentVelocity = new Vector2(0, Body.velocity.y);
-        }
+           // Body.velocity = new Vector2(0, Body.velocity.y);
+    //AgentVelocity = new Vector2(0, Body.velocity.y);
+}
 
 
 
@@ -208,36 +137,15 @@ public class AI_Script : MonoBehaviour
 
 
 
-    public bool SightSphere(Collider2D agentColloder)
-    {
-        if (Application.isPlaying)
-        {
-            Collider2D hitColl = Physics2D.OverlapCircle(agentColloder.bounds.center, SightRange, playerMask);
-
-            if (hitColl != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
-
-
-    }
+   
 
 
     private void FixedUpdate()
-    {
-       // Body.velocity = Vector3.SmoothDamp(Body.velocity, AgentVelocity, ref m_Velocity, 0.5f);
-        //Body.AddForce(new Vector2(0, jumpForce.y));
-        //jumpForce = Vector2.zero;
-    }
+{
+    // Body.velocity = Vector3.SmoothDamp(Body.velocity, AgentVelocity, ref m_Velocity, 0.5f);
+    //Body.AddForce(new Vector2(0, jumpForce.y));
+    //jumpForce = Vector2.zero;
+}
 
 
 

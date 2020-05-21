@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using AiFunctions.Utils;
 using UnityEngine;
 
 public class AiFSM : MonoBehaviour
 {
     public AiStates currentState = AiStates.Patrol;
     private Grid terrainMap;
+    private AiAgentInfo agentInfo;
+    private Collider2D agentCollider;
 
     private void Start()
     { 
-            terrainMap = GameObject.FindGameObjectWithTag("TerrainMap").GetComponent<GridSettings>().GetGrid();        
+            terrainMap = GameObject.FindGameObjectWithTag("TerrainMap").GetComponent<GridSettings>().GetGrid();
+        agentInfo = GetComponent<AiAgentInfo>();
+        agentCollider = GetComponent<Collider2D>();
     }
 
 // Update is called once per frame
@@ -17,7 +22,7 @@ void Update()
     {
         if(currentState == AiStates.Patrol)
         {
-AI_Script.ch
+            
         }
         else if (currentState == AiStates.Chase)
         {
@@ -33,16 +38,19 @@ AI_Script.ch
     }
 
 
-    //private void OnDrawGizmos()
-    //{
-    //    if (SightSphere())
-    //    {
-    //        Gizmos.color = Color.green;
-    //    }
-    //    else
-    //    {
-    //        Gizmos.color = Color.red;
-    //    }
-    //    Gizmos.DrawWireSphere(transform.position, SightRange);
-    //}
+    private void OnDrawGizmos()
+    {
+        if (Application.isPlaying)
+        {
+            if (AiMaths.SightSphere(agentCollider, agentInfo.sightRange))
+            {
+                Gizmos.color = Color.green;
+            }
+            else
+            {
+                Gizmos.color = Color.red;
+            }
+            Gizmos.DrawWireSphere(transform.position, agentInfo.sightRange);
+        }
+    }
 }

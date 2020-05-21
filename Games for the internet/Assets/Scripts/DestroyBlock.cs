@@ -6,45 +6,62 @@ public class DestroyBlock : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public Object brokenPrefab;
-
-    
+    private AiAgentInfo agentInfo;
+    public Object brokenPrefab;    
    private Color colour1 = new Color(0.8f, 0.8f, 0.8f, 1.0f);
-
-
    private Color colour2 = new Color(0.5f, 0.5f, 0.5f, 1.0f);
 
-    public int health = 3;
+    private Material whiteMat;
+    private Material defaultMat;
+
+    private SpriteRenderer sRend;
+
+    private int health = 0;
+
+    public void Start()
+    {
+        sRend = GetComponent<SpriteRenderer>();
+        whiteMat = Resources.Load("BrightWhite", typeof(Material)) as Material;
+        defaultMat = sRend.material;
+        agentInfo = GetComponent<AiAgentInfo>();
+        health = agentInfo.health;
+    }
+
+    public void ResetMat()
+    {
+        sRend.material = defaultMat;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        health--;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (health <= 0)
+        if (collision.gameObject.layer != 15)
         {
-            GameObject broken = (GameObject)Instantiate(brokenPrefab);
+            health--;
+            sRend.material = whiteMat;
+            Invoke("ResetMat", 0.2f);
+            if (health <= 0)
+            {
+                GameObject broken = (GameObject)Instantiate(brokenPrefab);
 
-            //Set position of barrel
-            broken.transform.position = transform.position;
-            broken.transform.rotation = transform.rotation;
-            broken.transform.localScale = transform.localScale;
-            //Destory old barrel
-            Destroy(gameObject);
+                //Set position of barrel
+                broken.transform.position = transform.position;
+                broken.transform.rotation = transform.rotation;
+                broken.transform.localScale = transform.localScale;
+                //Destory old barrel
+                Destroy(gameObject);
 
+            }
         }
-       else if (health == 2)
-        {
-            gameObject.GetComponent<SpriteRenderer>().color = colour1;
-        }
+        //else if (health == 2)
+        //{
+        //    gameObject.GetComponent<SpriteRenderer>().color = colour1;
+        //}
 
-        else if (health == 1)
-        {
-            gameObject.GetComponent<SpriteRenderer>().color = colour2;
-        }
+        //else if (health == 1)
+        //{
+        //    gameObject.GetComponent<SpriteRenderer>().color = colour2;
+        //}
 
-    }
+      
+    }   
 }
