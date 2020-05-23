@@ -9,7 +9,8 @@ public class Movement : MonoBehaviour
     private SpriteRenderer PlayerSprite;
     public Animator CurrentAnimation;
     private Rigidbody2D Body;
-    private CapsuleCollider2D playerCollider;
+    private CapsuleCollider2D normalCollider;
+    private CapsuleCollider2D crouchCollider;
     public float jumpAmount;
 
     [SerializeField]
@@ -27,21 +28,53 @@ public class Movement : MonoBehaviour
     public GameObject attackBox;
 
     public GameObject dropCollider;
+    public GameObject slamCollider;
 
     // Start is called before the first frame update
     void Start()
     {
         PlayerSprite = gameObject.GetComponent<SpriteRenderer>();
         Body = gameObject.GetComponent<Rigidbody2D>();
-        playerCollider = gameObject.GetComponent<CapsuleCollider2D>();
+        normalCollider = gameObject.GetComponent<CapsuleCollider2D>();
+        crouchCollider = dropCollider.GetComponent<CapsuleCollider2D>();
         FlipX = false;
     }
+
+    bool jump = false;
+    bool crouch = false;
 
     // Update is called once per frame
     void Update()
     {
-     
-        if (isGrounded() && !isAttacking && Input.GetKeyDown(KeyCode.J))
+        if (!jump && Input.GetKeyDown(KeyCode.Space))
+        {
+            jump = true;
+        }
+        else if(isGrounded(normalCollider) | isGrounded(crouchCollider))
+        {
+            jump = false;
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow) | Input.GetKey(KeyCode.S))
+        {
+            crouch = true;
+        }
+        else
+        {
+            crouch = false;
+        }
+
+        if(jump && crouch)
+        {
+            slamCollider.SetActive(true);
+        }
+        else
+        {
+            slamCollider.SetActive(false);
+        }
+
+
+            if (isGrounded(normalCollider) && !isAttacking && Input.GetKeyDown(KeyCode.J))
         {
             isAttacking = true;
             
@@ -65,9 +98,9 @@ public class Movement : MonoBehaviour
 
           
 
-              if (isGrounded() && Input.GetKeyDown(KeyCode.Space) | Input.GetKeyDown(KeyCode.W))
+              if (isGrounded(normalCollider) && Input.GetKeyDown(KeyCode.Space) | Input.GetKeyDown(KeyCode.W))
             {
-                if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Jump") | isGrounded())
+                if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Jump") | isGrounded(normalCollider))
                 {
                     JumpAnimation();
                     //playerVelocity = new Vector2(Body.velocity.x, 10);
@@ -96,10 +129,8 @@ public class Movement : MonoBehaviour
             {
                 playerVelocity = new Vector2(MaxSpeed, Body.velocity.y);
                 FlipDirectionRight();
-                if (Input.GetKey(KeyCode.DownArrow) | Input.GetKey(KeyCode.S))
-                {
-                }
-                else
+
+                if (!crouch)
                 {
                     MoveAnimation();
                 }
@@ -110,20 +141,14 @@ public class Movement : MonoBehaviour
             {
                 playerVelocity = new Vector2(-MaxSpeed, Body.velocity.y);
                 FlipDirectionLeft();
-                if (Input.GetKey(KeyCode.DownArrow) | Input.GetKey(KeyCode.S))
-                {
-                }
-                else
+                if (!crouch)
                 {
                     MoveAnimation();
                 }
             }
             else
             {
-                if (Input.GetKey(KeyCode.DownArrow) | Input.GetKey(KeyCode.S))
-                {
-                }
-                else
+                if (!crouch)
                 {
                 IdleAnimation();
                 Body.velocity = new Vector2(0, Body.velocity.y);
@@ -184,7 +209,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private bool isGrounded()
+    private bool isGrounded(Collider2D playerCollider )
     {
         float extraHieght = 0.1f;
         RaycastHit2D hit;
