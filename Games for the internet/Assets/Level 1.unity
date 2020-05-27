@@ -13487,6 +13487,29 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1730080152 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6088099907044419476, guid: 923c9ea8163b8c948aacbab63c121c6c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6088099905786260525}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1730080153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730080152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a33604b4b5c61641945cdcd566cc024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  currentState: 2
+  player: {fileID: 405892716}
 --- !u!1 &1737980835
 GameObject:
   m_ObjectHideFlags: 0
@@ -13945,7 +13968,22 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 405892716}
+      objectReference: {fileID: 0}
+    - target: {fileID: 6088099907044419472, guid: 923c9ea8163b8c948aacbab63c121c6c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6088099907044419472, guid: 923c9ea8163b8c948aacbab63c121c6c,
+        type: 3}
+      propertyPath: RayDistanceForward
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6088099907044419472, guid: 923c9ea8163b8c948aacbab63c121c6c,
+        type: 3}
+      propertyPath: RayDistanceDown
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6088099907044419473, guid: 923c9ea8163b8c948aacbab63c121c6c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14010,6 +14048,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mantis
+      objectReference: {fileID: 0}
+    - target: {fileID: 6088099907044419567, guid: 923c9ea8163b8c948aacbab63c121c6c,
+        type: 3}
+      propertyPath: speed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6088099907044419567, guid: 923c9ea8163b8c948aacbab63c121c6c,
+        type: 3}
+      propertyPath: jumpHeight
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 923c9ea8163b8c948aacbab63c121c6c, type: 3}

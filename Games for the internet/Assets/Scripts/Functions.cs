@@ -131,6 +131,13 @@ namespace Functions.Utils
         }
 
         //Get Grid X and Y from Object Position
+        public static void GetXY(Vector3 worldPosition, Vector3 originPosition, float cellSize, out Vector2Int XY)
+        {
+            XY = new Vector2Int(Mathf.FloorToInt((worldPosition - originPosition).x / cellSize), Mathf.FloorToInt((worldPosition - originPosition).y / cellSize));
+          
+        }
+
+        //Get Grid X and Y from Object Position
         public static void GetXY(Vector3 worldPosition, Vector3 originPosition, float cellSize, out int x, out int y)
         {
             x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize);
@@ -183,6 +190,7 @@ namespace Functions.Utils
 
                 if (currentNode != null && currentNode.x == goalX && currentNode.y == goalY)
                 {
+                    path.Clear();
                     //List<CNode> path = new List<CNode>();
                     path.Add(currentNode);
 
@@ -196,7 +204,7 @@ namespace Functions.Utils
 
                     Debug.Log("Path Found");
 
-
+                    path.RemoveAt(0);
                 }
 
 

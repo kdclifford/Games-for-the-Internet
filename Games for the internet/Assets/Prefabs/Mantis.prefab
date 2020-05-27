@@ -246,9 +246,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canFly: 0
   jumpHeight: 0
-  speed: 0
+  speed: 100
   health: 3
-  sightRange: 0
+  sightRange: 10
 --- !u!114 &8093408237904714988
 MonoBehaviour:
   m_ObjectHideFlags: 0
