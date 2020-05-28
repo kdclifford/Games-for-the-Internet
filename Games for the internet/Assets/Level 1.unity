@@ -13508,8 +13508,19 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 512
+  floorMask:
+    serializedVersion: 2
+    m_Bits: 256
+  agentAnimator: {fileID: 1730080160}
   currentState: 2
   player: {fileID: 405892716}
+  showSight: 0
+--- !u!95 &1730080160 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6088099907044419479, guid: 923c9ea8163b8c948aacbab63c121c6c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6088099905786260525}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1737980835
 GameObject:
   m_ObjectHideFlags: 0
@@ -13898,12 +13909,12 @@ PrefabInstance:
     - target: {fileID: 1955473209111012273, guid: 4a8d03f4680589e4ca35b244f99d13dd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.32
+      value: -12.56
       objectReference: {fileID: 0}
     - target: {fileID: 1955473209111012273, guid: 4a8d03f4680589e4ca35b244f99d13dd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.45
+      value: 3.9
       objectReference: {fileID: 0}
     - target: {fileID: 1955473209111012273, guid: 4a8d03f4680589e4ca35b244f99d13dd,
         type: 3}
@@ -13955,7 +13966,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Beetle
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1955473209111012279, guid: 4a8d03f4680589e4ca35b244f99d13dd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4a8d03f4680589e4ca35b244f99d13dd, type: 3}
 --- !u!1001 &6088099905786260525
 PrefabInstance:
@@ -14052,14 +14064,16 @@ PrefabInstance:
     - target: {fileID: 6088099907044419567, guid: 923c9ea8163b8c948aacbab63c121c6c,
         type: 3}
       propertyPath: speed
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6088099907044419567, guid: 923c9ea8163b8c948aacbab63c121c6c,
         type: 3}
       propertyPath: jumpHeight
-      value: 0
+      value: 40
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8093408237904714988, guid: 923c9ea8163b8c948aacbab63c121c6c, type: 3}
+    - {fileID: 6088099907044419472, guid: 923c9ea8163b8c948aacbab63c121c6c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 923c9ea8163b8c948aacbab63c121c6c, type: 3}
 --- !u!1001 &7542555400423134986
 PrefabInstance:

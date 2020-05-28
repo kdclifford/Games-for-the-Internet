@@ -2,23 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimatorController : MonoBehaviour
+namespace AiAnimationController.Utils
 {
-    public Animator agentAnimation;
-
-    private void Update()
+    public class AiAnimations
     {
-        Attack();
-    }
+       public static void Walk(Animator agentAnimation)
+        {
+            agentAnimation.SetInteger("Animation", 0);
+        }
 
-    void Walk()
-    {
-        agentAnimation.SetInteger("Animation", 0);
+        public static void Attack(Animator agentAnimation)
+        {
+            agentAnimation.SetInteger("Animation", 1);
+        }
     }
-
-    void Attack()
-    {
-        agentAnimation.SetInteger("Animation", 1);
-    }
-
 }

@@ -58,7 +58,7 @@ namespace Functions.Utils
         }
 
         //Check if Agent is next to a wall
-        public static bool IsNextToWall2D(float scale, CapsuleCollider2D agentCollider, float rayWallDistance, LayerMask wallMask)
+        public static bool IsNextToWall2D(float scale, Collider2D agentCollider, float rayWallDistance, LayerMask wallMask)
         {
             RaycastHit2D hit;
             if (scale == 1)
@@ -199,12 +199,13 @@ namespace Functions.Utils
                     while (path[path.Count - 1].parentNode.x != GoalparentPos && path[path.Count - 1].parentNode.y != GoalparentPos)
                     {
                         path.Add(path[path.Count - 1].parentNode);
-                        Debug.Log(path[path.Count - 1].x + "  " + path[path.Count - 1].y);
+                       // Debug.Log(path[path.Count - 1].x + "  " + path[path.Count - 1].y);
                     }
 
                     Debug.Log("Path Found");
 
-                    path.RemoveAt(0);
+                    //path.RemoveAt(0);
+                    path.RemoveAt(path.Count - 1); 
                 }
 
 
