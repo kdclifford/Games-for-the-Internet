@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public class CombineImages : MonoBehaviour
 {
@@ -24,10 +24,7 @@ public class CombineImages : MonoBehaviour
         NewTexture = MergeImage(textureBody, textureEye, NewTexture); 
     }
 
-    public void SwitcLevel()
-    {
-        SceneManager.LoadScene("Level 1");
-    }
+  
 
 
     // Update is called once per frame

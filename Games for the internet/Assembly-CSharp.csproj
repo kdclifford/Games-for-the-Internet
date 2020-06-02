@@ -66,6 +66,7 @@
     <Compile Include="Assets\AiAgentInfo.cs" />
     <Compile Include="Assets\AnimatorController.cs" />
     <Compile Include="Assets\FlatternGrass.cs" />
+    <Compile Include="Assets\MenuScript.cs" />
     <Compile Include="Assets\Scripts\AI_Script.cs" />
     <Compile Include="Assets\Scripts\AStar.cs" />
     <Compile Include="Assets\Scripts\AiFSM.cs" />
