@@ -30,6 +30,10 @@ public class Movement : MonoBehaviour
     public GameObject dropCollider;
     public GameObject slamCollider;
 
+    //Power Up Bools
+    public bool wings = false;
+    public bool shoot = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -241,6 +245,8 @@ public class Movement : MonoBehaviour
         
 
     }
+
+  
 
     void FlipDirectionRight()
     {

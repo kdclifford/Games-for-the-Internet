@@ -73,7 +73,6 @@ GameObject:
   - component: {fileID: 6088099907044419472}
   - component: {fileID: 6088099907044419564}
   - component: {fileID: 6088099907044419567}
-  - component: {fileID: 8093408237904714988}
   m_Layer: 14
   m_Name: Mantis
   m_TagString: Untagged
@@ -249,16 +248,3 @@ MonoBehaviour:
   speed: 100
   health: 3
   sightRange: 10
---- !u!114 &8093408237904714988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6088099907044419476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1d9002919024b9459b495e4f8b78f18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentAnimation: {fileID: 6088099907044419479}

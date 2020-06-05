@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 7
+  m_SortingOrder: 8
   m_Sprite: {fileID: -1745280011730706991, guid: 0fbc324da8298154aae0269d8460c99a,
     type: 3}
   m_Color: {r: 0, g: 0.7110803, b: 1, a: 1}
@@ -159,8 +159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d19cf6bf41f7dfa429a026f2c2309032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foreground: {fileID: 0}
-  tile: {fileID: 0}
   grass:
     serializedVersion: 2
     m_Bits: 32768

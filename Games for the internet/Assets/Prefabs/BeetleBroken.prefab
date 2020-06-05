@@ -5060,6 +5060,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6813568206504506007}
+  - component: {fileID: 396958323665003936}
   m_Layer: 10
   m_Name: BeetleBroken
   m_TagString: Untagged
@@ -5084,6 +5085,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &396958323665003936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7922907284398334572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f687fae6e121274993bace010bb9592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpPrefab: {fileID: 526592371582018345, guid: c2445a0ec911901469327b2d9bcabf6b,
+    type: 3}
 --- !u!1 &9105410871744801508
 GameObject:
   m_ObjectHideFlags: 0
