@@ -30,6 +30,10 @@ public class AiFSM : MonoBehaviour
     bool findPath = true;
     Vector2Int agentGridPos;
 
+    public GameObject attackBox;
+    private bool isAttacking;
+    public float timer = 0;
+
     private void Start()
     {
         //terrainMap = GameObject.FindGameObjectWithTag("TerrainMap").GetComponent<GridSettings>().GetGrid();
@@ -104,12 +108,23 @@ public class AiFSM : MonoBehaviour
         }
         else if (currentState == AiStates.Attack)
         {
-            AiAnimations.Attack(agentAnimator);
-
-            if(!AiMaths.SightSphere(agentCollider, 1.0f, playerMask))
+            timer = Time.deltaTime + timer;
+            if (!AiMaths.SightSphere(agentCollider, 1.0f, playerMask))
             {
                 currentState = AiStates.Chase;
+                timer = 3;
             }
+
+           else if (!isAttacking && timer > 3.0f)
+            {
+                isAttacking = true;
+
+                StartCoroutine(DoAttack());
+                timer = 0;
+
+            }
+
+           
 
 
         }
@@ -143,7 +158,15 @@ public class AiFSM : MonoBehaviour
         }
     }
 
+    IEnumerator DoAttack()
+    {
+        AiAnimations.Attack(agentAnimator);
+        attackBox.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        //yield return new WaitForSeconds(0.5f);
+        attackBox.SetActive(false);
+        isAttacking = false;
+    }
 
 
-   
 }

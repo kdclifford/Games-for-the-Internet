@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4970819113360359727}
   - component: {fileID: 4002709906902899767}
-  m_Layer: 14
+  m_Layer: 18
   m_Name: AttackBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.5396569, y: 0.03997469}
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canFly: 0
-  jumpHeight: 0
-  speed: 100
+  jumpHeight: 40
+  speed: 40
   health: 3
   sightRange: 10

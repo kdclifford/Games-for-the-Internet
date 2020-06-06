@@ -42,7 +42,7 @@ namespace AiFunctions.Utils
             float directionalSpeed = 0;
             float jumpSpeed = 0;
            
-            Debug.Log(distance);
+            //Debug.Log(distance);
 
            
 

@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\Functions.cs" />
     <Compile Include="Assets\Scripts\Grid.cs" />
     <Compile Include="Assets\Scripts\GridSettings.cs" />
+    <Compile Include="Assets\Scripts\MaggotAttack.cs" />
     <Compile Include="Assets\Scripts\MouseColour.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\Parallax.cs" />

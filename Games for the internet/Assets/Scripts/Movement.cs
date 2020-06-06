@@ -24,6 +24,7 @@ public class Movement : MonoBehaviour
 
     private bool FlipX = false;
     private bool isAttacking = false;
+    public bool isHurt = false;
 
     public GameObject attackBox;
 
@@ -50,11 +51,13 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if (!jump && Input.GetKeyDown(KeyCode.Space))
         {
             jump = true;
         }
-        else if(isGrounded(normalCollider) | isGrounded(crouchCollider))
+        else if (isGrounded(normalCollider) | isGrounded(crouchCollider))
         {
             jump = false;
         }
@@ -68,7 +71,7 @@ public class Movement : MonoBehaviour
             crouch = false;
         }
 
-        if(jump && crouch)
+        if (jump && crouch)
         {
             slamCollider.SetActive(true);
         }
@@ -77,11 +80,12 @@ public class Movement : MonoBehaviour
             slamCollider.SetActive(false);
         }
 
+     
 
-            if (isGrounded(normalCollider) && !isAttacking && Input.GetKeyDown(KeyCode.J))
+     if (isGrounded(normalCollider) && !isAttacking && Input.GetKeyDown(KeyCode.J))
         {
             isAttacking = true;
-            
+
             StartCoroutine(DoAttack());
 
             Body.velocity = new Vector2(0, Body.velocity.y);
@@ -90,19 +94,22 @@ public class Movement : MonoBehaviour
 
         }
 
+       
 
 
 
-        if (!isAttacking )
+
+
+        if (!isAttacking)
         {
-           
 
 
 
 
-          
 
-              if (isGrounded(normalCollider) && Input.GetKeyDown(KeyCode.Space) | Input.GetKeyDown(KeyCode.W))
+
+
+            if (isGrounded(normalCollider) && Input.GetKeyDown(KeyCode.Space) | Input.GetKeyDown(KeyCode.W))
             {
                 if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Jump") | isGrounded(normalCollider))
                 {
@@ -112,20 +119,20 @@ public class Movement : MonoBehaviour
                 }
             }
 
-              
+
 
             else if (Input.GetKey(KeyCode.DownArrow) | Input.GetKey(KeyCode.S))
             {
                 playerVelocity = new Vector2(0, -MaxSpeed);
                 dropCollider.SetActive(true);
                 GetComponent<CapsuleCollider2D>().enabled = false;
-                GetComponent<BoxCollider2D>().enabled = false;
+                //GetComponent<BoxCollider2D>().enabled = false;
                 DropAnimation();
             }
-              else
+            else
             {
                 GetComponent<CapsuleCollider2D>().enabled = true;
-                GetComponent<BoxCollider2D>().enabled = true;
+               // GetComponent<BoxCollider2D>().enabled = true;
                 dropCollider.SetActive(false);
             }
 
@@ -139,7 +146,7 @@ public class Movement : MonoBehaviour
                     MoveAnimation();
                 }
             }
-            
+
 
             else if (Input.GetKey(KeyCode.LeftArrow) | Input.GetKey(KeyCode.A))
             {
@@ -154,11 +161,13 @@ public class Movement : MonoBehaviour
             {
                 if (!crouch)
                 {
-                IdleAnimation();
-                Body.velocity = new Vector2(0, Body.velocity.y);
-                playerVelocity = new Vector2(0, Body.velocity.y);
-                //isJumping = 0;
                     
+                        IdleAnimation();
+                    
+                    Body.velocity = new Vector2(0, Body.velocity.y);
+                    playerVelocity = new Vector2(0, Body.velocity.y);
+                    //isJumping = 0;
+
                 }
             }
 
@@ -178,13 +187,16 @@ public class Movement : MonoBehaviour
 
 
         }
-       
-      
-        
 
 
-       
-       
+        if (isHurt)
+        {
+            StartCoroutine(DoDamage());
+        }
+
+
+
+
 
 
     }
@@ -197,6 +209,15 @@ public class Movement : MonoBehaviour
         //yield return new WaitForSeconds(0.5f);
         attackBox.SetActive(false);
         isAttacking = false;
+    }
+
+    IEnumerator DoDamage()
+    {
+        HitAnimation();
+        
+        yield return new WaitForSeconds(0.3f);
+
+        isHurt = false;
     }
 
     void FixedUpdate()
@@ -213,7 +234,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private bool isGrounded(Collider2D playerCollider )
+    private bool isGrounded(Collider2D playerCollider)
     {
         float extraHieght = 0.1f;
         RaycastHit2D hit;
@@ -242,11 +263,11 @@ public class Movement : MonoBehaviour
 
         return false;
 
-        
+
 
     }
 
-  
+
 
     void FlipDirectionRight()
     {
@@ -294,4 +315,28 @@ public class Movement : MonoBehaviour
     {
         CurrentAnimation.SetInteger("AnimationPlayer", 4);
     }
+   public void HitAnimation()
+    {
+        CurrentAnimation.SetInteger("AnimationPlayer", 5);
+    }
+
+    void DieAnimation()
+    {
+        CurrentAnimation.SetInteger("AnimationPlayer", 6);
+    }
+
+
+    public void IsHit()
+    {
+        isHurt = true;
+        //HitAnimation();
+
+
+    }
+
+    public void IsNotHit()
+    {
+        isHurt = false;
+    }
+
 }

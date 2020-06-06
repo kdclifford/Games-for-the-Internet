@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - TerrainMap
+  - Wing
+  - Blob
   layers:
   - Default
   - TransparentFX
@@ -23,8 +25,8 @@ TagManager:
   - Enemy
   - ForeGround
   - Projectile
-  - 
-  - 
+  - PowerUp
+  - EnemyAttack
   - 
   - 
   - 

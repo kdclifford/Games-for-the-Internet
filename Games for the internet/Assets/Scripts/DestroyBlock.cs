@@ -7,9 +7,9 @@ public class DestroyBlock : MonoBehaviour
     // Start is called before the first frame update
 
     private AiAgentInfo agentInfo;
-    public Object brokenPrefab;    
-   private Color colour1 = new Color(0.8f, 0.8f, 0.8f, 1.0f);
-   private Color colour2 = new Color(0.5f, 0.5f, 0.5f, 1.0f);
+    public Object brokenPrefab;
+    private Color colour1 = new Color(0.8f, 0.8f, 0.8f, 1.0f);
+    private Color colour2 = new Color(0.5f, 0.5f, 0.5f, 1.0f);
 
     private Material whiteMat;
     private Material defaultMat;
@@ -34,12 +34,15 @@ public class DestroyBlock : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer != 15)
+
+
+        if (collision.gameObject.layer == 12)
         {
-            health--;
+            Debug.Log(collision.name);
+            agentInfo.health--;
             sRend.material = whiteMat;
             Invoke("ResetMat", 0.2f);
-            if (health <= 0)
+            if (agentInfo.health <= 0)
             {
                 GameObject broken = (GameObject)Instantiate(brokenPrefab);
 
@@ -51,6 +54,7 @@ public class DestroyBlock : MonoBehaviour
                 Destroy(gameObject);
 
             }
+
         }
         //else if (health == 2)
         //{
@@ -62,6 +66,6 @@ public class DestroyBlock : MonoBehaviour
         //    gameObject.GetComponent<SpriteRenderer>().color = colour2;
         //}
 
-      
-    }   
+
+    }
 }
