@@ -9,3 +9,11 @@ public enum AiStates
     Chase,
     AmountOfStates
 }
+
+public enum direction
+{
+    down,
+    left,
+    up,
+    right,
+}

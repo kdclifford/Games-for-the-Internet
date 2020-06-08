@@ -68,8 +68,11 @@
     <Compile Include="Assets\FlatternGrass.cs" />
     <Compile Include="Assets\Health.cs" />
     <Compile Include="Assets\HitOnce.cs" />
+    <Compile Include="Assets\MaggotAi.cs" />
     <Compile Include="Assets\MenuScript.cs" />
+    <Compile Include="Assets\MoveAcidBlob.cs" />
     <Compile Include="Assets\RotatePowerUp.cs" />
+    <Compile Include="Assets\ScoreScript.cs" />
     <Compile Include="Assets\Scripts\AI_Script.cs" />
     <Compile Include="Assets\Scripts\AStar.cs" />
     <Compile Include="Assets\Scripts\AiFSM.cs" />
@@ -91,6 +94,8 @@
     <Compile Include="Assets\Scripts\Parallax.cs" />
     <Compile Include="Assets\Scripts\ToggleFunctions.cs" />
     <Compile Include="Assets\SpawnPowerUp.cs" />
+    <Compile Include="Assets\UiInfo.cs" />
+    <Compile Include="Assets\test.cs" />
     <None Include="Assets\Taiga-Asset-Pack_v2_vnitti\Readme.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Kyle/Documents/GitHub/Games-for-the-Internet/Games for the internet/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

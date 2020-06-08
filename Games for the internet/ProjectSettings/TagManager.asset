@@ -7,6 +7,10 @@ TagManager:
   - TerrainMap
   - Wing
   - Blob
+  - AttackBox
+  - Hud
+  - UiInfo
+  - Maggot
   layers:
   - Default
   - TransparentFX
@@ -27,7 +31,7 @@ TagManager:
   - Projectile
   - PowerUp
   - EnemyAttack
-  - 
+  - Blob
   - 
   - 
   - 

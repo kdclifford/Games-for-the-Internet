@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Animations;
+using Functions.Utils;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -57,7 +58,7 @@ public class Movement : MonoBehaviour
         {
             jump = true;
         }
-        else if (isGrounded(normalCollider) | isGrounded(crouchCollider))
+        else if (KylesFunctions.isGrounded2D(normalCollider, 0.1f, floorMask) | KylesFunctions.isGrounded2D(crouchCollider, 0.1f, floorMask))
         {
             jump = false;
         }
@@ -82,7 +83,7 @@ public class Movement : MonoBehaviour
 
      
 
-     if (isGrounded(normalCollider) && !isAttacking && Input.GetKeyDown(KeyCode.J))
+     if (KylesFunctions.isGrounded2D(normalCollider, 0.1f, floorMask) && !isAttacking && Input.GetKeyDown(KeyCode.J))
         {
             isAttacking = true;
 
@@ -109,9 +110,9 @@ public class Movement : MonoBehaviour
 
 
 
-            if (isGrounded(normalCollider) && Input.GetKeyDown(KeyCode.Space) | Input.GetKeyDown(KeyCode.W))
+            if (KylesFunctions.isGrounded2D(normalCollider, 0.1f, floorMask) && Input.GetKeyDown(KeyCode.Space) | Input.GetKeyDown(KeyCode.W))
             {
-                if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Jump") | isGrounded(normalCollider))
+                if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Jump") | KylesFunctions.isGrounded2D(normalCollider, 0.1f, floorMask))
                 {
                     JumpAnimation();
                     //playerVelocity = new Vector2(Body.velocity.x, 10);
@@ -234,38 +235,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private bool isGrounded(Collider2D playerCollider)
-    {
-        float extraHieght = 0.1f;
-        RaycastHit2D hit;
-        foreach (LayerMask node in floorMask)
-        {
-
-            hit = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, extraHieght, node);
-            if (hit)
-            {
-                Color rayColour;
-                if (hit.collider != null)
-                {
-                    rayColour = Color.green;
-                }
-                else
-                {
-                    rayColour = Color.red;
-                }
-                Debug.DrawRay(playerCollider.bounds.center + new Vector3(playerCollider.bounds.extents.x, 0), Vector2.down * (playerCollider.bounds.extents.y + extraHieght), rayColour);
-                Debug.DrawRay(playerCollider.bounds.center - new Vector3(playerCollider.bounds.extents.x, 0), Vector2.down * (playerCollider.bounds.extents.y + extraHieght), rayColour);
-                Debug.DrawRay(playerCollider.bounds.center - new Vector3(playerCollider.bounds.extents.x, playerCollider.bounds.extents.y + extraHieght), Vector3.right * (playerCollider.bounds.extents.x * 2), rayColour);
-                // Debug.Log(hit.collider);
-                return hit.collider != null;
-            }
-        }
-
-        return false;
-
-
-
-    }
+  
 
 
 

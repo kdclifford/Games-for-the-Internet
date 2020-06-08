@@ -18,8 +18,10 @@ public class DestroyBlock : MonoBehaviour
 
     private int health = 0;
 
+    private GameObject uiInfo;
     public void Start()
     {
+        uiInfo = GameObject.FindGameObjectWithTag("UiInfo");
         sRend = GetComponent<SpriteRenderer>();
         whiteMat = Resources.Load("BrightWhite", typeof(Material)) as Material;
         defaultMat = sRend.material;
@@ -36,14 +38,17 @@ public class DestroyBlock : MonoBehaviour
     {
 
 
-        if (collision.gameObject.layer == 12)
+        if (collision.gameObject.tag == "AttackBox" && collision.gameObject.layer == 9)
         {
             Debug.Log(collision.name);
+
+            uiInfo.GetComponent<UiInfo>().score.GetComponent<ScoreScript>().AddScore(1);
             agentInfo.health--;
             sRend.material = whiteMat;
             Invoke("ResetMat", 0.2f);
             if (agentInfo.health <= 0)
             {
+                Destroy(gameObject);
                 GameObject broken = (GameObject)Instantiate(brokenPrefab);
 
                 //Set position of barrel
@@ -51,7 +56,6 @@ public class DestroyBlock : MonoBehaviour
                 broken.transform.rotation = transform.rotation;
                 broken.transform.localScale = transform.localScale;
                 //Destory old barrel
-                Destroy(gameObject);
 
             }
 

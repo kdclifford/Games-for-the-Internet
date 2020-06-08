@@ -36,26 +36,28 @@ namespace Functions.Utils
             return textMesh;
         }
 
-        //Check if Grounded
-        public static bool isGrounded2D(Collider2D agentCollider, float rayFloorDistance, LayerMask groundMask)
+        // check if object is grounded and if only has one object mask
+        public static bool isGrounded2D(Collider2D objectCollider, float distance, LayerMask mask)
         {
-            RaycastHit2D hit = Physics2D.BoxCast(agentCollider.bounds.center, agentCollider.bounds.size, 0f, Vector2.down, rayFloorDistance, groundMask);
-            Color rayColour;
-            if (hit.collider != null)
-            {
-                rayColour = Color.green;
-            }
-            else
-            {
-                rayColour = Color.red;
-            }
-            Debug.DrawRay(agentCollider.bounds.center + new Vector3(agentCollider.bounds.extents.x, 0), Vector2.down * (agentCollider.bounds.extents.y + rayFloorDistance), rayColour);
-            Debug.DrawRay(agentCollider.bounds.center - new Vector3(agentCollider.bounds.extents.x, 0), Vector2.down * (agentCollider.bounds.extents.y + rayFloorDistance), rayColour);
-            Debug.DrawRay(agentCollider.bounds.center - new Vector3(agentCollider.bounds.extents.x, agentCollider.bounds.extents.y + rayFloorDistance), Vector3.right * (agentCollider.bounds.extents.x * 2), rayColour);
-            // Debug.Log(hit.collider);
-
-            return hit.collider != null;
+            //create list with the passed over mask
+            List<LayerMask> newFloor = new List<LayerMask>();
+            newFloor.Add(mask);
+            return isGrounded2D(objectCollider, distance, newFloor);
         }
+        //Check if object is Grounded
+        public static bool isGrounded2D(Collider2D objectCollider, float distance, List<LayerMask> maskList)
+        {            
+            foreach (LayerMask node in maskList)
+            {
+           
+                if(BoxCastDebug(objectCollider.bounds.extents.y * 2, objectCollider.bounds.extents.x * 2, objectCollider.bounds.center, Vector2.down, distance, node))
+                {
+                    return true;
+                }                
+            }
+            return false;
+        }
+
 
         //Check if Agent is next to a wall
         public static bool IsNextToWall2D(float scale, Collider2D agentCollider, float rayWallDistance, LayerMask wallMask)
@@ -97,8 +99,24 @@ namespace Functions.Utils
 
         }
 
-        //Set all the Grid Values to pathable and non pathable
-        public static Grid GridValues(Grid grid, LayerMask floorMask, float playerHeight, Color gridColour)
+
+        public static bool IsNextToWall2D(float scale, Collider2D agentCollider, float rayWallDistance, List<LayerMask> maskList)
+        {
+            foreach (LayerMask node in maskList)
+            {
+
+                if(IsNextToWall2D(scale, agentCollider, rayWallDistance, node))
+                {
+                    return true;
+                }
+
+
+            }
+            return false;
+        }
+
+                //Set all the Grid Values to pathable and non pathable
+                public static Grid GridValues(Grid grid, LayerMask floorMask, float playerHeight, Color gridColour)
         {
 
             for (int x = 0; x < grid.GetWidth(); x++)
@@ -218,6 +236,7 @@ namespace Functions.Utils
 
         }
 
+        // genertate all accessible nodes from parent node
         public static List<CNode> GenerateNodes(ref List<CNode> openList, ref List<CNode> closedList, Vector2 start, Vector2 goal, Grid terrainMap, ref CNode currentNode)
         {
             if (openList.Count != 0)
@@ -400,8 +419,34 @@ namespace Functions.Utils
 
         }
 
-       
+       // Used to set a box cast and display it on the scene
+       public static bool BoxCastDebug(float height, float width, Vector3 origin, Vector2 direction, float distance, LayerMask hitMask )
+        {
+            RaycastHit2D hit = Physics2D.BoxCast(origin, new Vector2(width, height), 0f, direction, distance, hitMask);
 
+            Color rayColour = Color.red;
+            if (hit.collider != null)
+            {
+                rayColour = Color.green;
+               
+            }
+            else
+            {
+                rayColour = Color.red;
+               
+            }
+
+            Debug.DrawRay(origin - new Vector3(-(width * 0.5f) , (height * 0.5f)), Vector2.down * (distance), rayColour);// right
+            Debug.DrawRay(origin - new Vector3(width * 0.5f , (height * 0.5f)), Vector2.down * (distance), rayColour); // left
+            Debug.DrawRay(origin - new Vector3(width * 0.5f, (height * 0.5f) + distance), Vector3.right * (width), rayColour);// bottom
+            //Debug.DrawRay(origin + new Vector3(width * 0.5f, (height * 0.5f) + distance), Vector3.left * (width), rayColour);// top
+            Debug.DrawRay(origin - new Vector3(width * 0.5f, (height * 0.5f)), Vector3.right * (width), rayColour);// top
+           // Debug.Log(hit.collider);
+
+
+            return hit.collider != null;
+
+        }
 
 
 

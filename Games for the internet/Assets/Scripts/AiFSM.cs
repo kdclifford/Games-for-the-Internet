@@ -123,6 +123,10 @@ public class AiFSM : MonoBehaviour
                 timer = 0;
 
             }
+            else
+            {
+                AiAnimations.Walk(agentAnimator);
+            }
 
            
 

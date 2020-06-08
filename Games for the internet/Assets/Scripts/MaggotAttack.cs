@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MaggotAttack : MonoBehaviour
 {
-    private bool attack = false;
+    public bool attack = false;
     public GameObject blobPrefab;
 
     public void SpawnBlob()
@@ -21,6 +21,7 @@ public class MaggotAttack : MonoBehaviour
         {
             GameObject blob = (GameObject)Instantiate(blobPrefab);
             blob.transform.position = transform.position;
+            blob.GetComponent<MoveAcidBlob>().direction = (int)transform.localScale.x;
             attack = false;
         }
 

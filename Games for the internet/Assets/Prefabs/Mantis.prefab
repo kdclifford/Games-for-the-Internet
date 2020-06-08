@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4970819113360359727}
   - component: {fileID: 4002709906902899767}
+  - component: {fileID: 206391861}
   m_Layer: 18
   m_Name: AttackBox
-  m_TagString: Untagged
+  m_TagString: AttackBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,6 +58,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.76015234, y: 1.0799494}
   m_EdgeRadius: 0
+--- !u!50 &206391861
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4250766230623192222}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &6088099907044419476
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,9 +92,9 @@ GameObject:
   - component: {fileID: 6088099907044419479}
   - component: {fileID: 6088099907044419474}
   - component: {fileID: 6088099907044419475}
-  - component: {fileID: 6088099907044419472}
   - component: {fileID: 6088099907044419564}
   - component: {fileID: 6088099907044419567}
+  - component: {fileID: 1730080153}
   m_Layer: 14
   m_Name: Mantis
   m_TagString: Untagged
@@ -173,7 +195,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 6088099907044419476}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: e04af14ddb02de1449bc882f1c6ac0f4, type: 2}
+  m_Material: {fileID: 6200000, guid: 526b508b9b61f004ea838601d8a0ff2c, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -201,22 +223,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &6088099907044419472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6088099907044419476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e9c19795c7f13a4aa342558d9e63104, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RayDistanceForward: 0.1
-  RayDistanceDown: 0.1
-  enemyTags: []
-  player: {fileID: 0}
 --- !u!114 &6088099907044419564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,3 +254,27 @@ MonoBehaviour:
   speed: 40
   health: 3
   sightRange: 10
+--- !u!114 &1730080153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6088099907044419476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a33604b4b5c61641945cdcd566cc024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  floorMask:
+    serializedVersion: 2
+    m_Bits: 256
+  agentAnimator: {fileID: 6088099907044419479}
+  currentState: 2
+  player: {fileID: 0}
+  showSight: 0
+  attackBox: {fileID: 4250766230623192222}
+  timer: 0
