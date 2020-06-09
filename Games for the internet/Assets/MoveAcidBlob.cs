@@ -18,21 +18,25 @@ public class MoveAcidBlob : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agentRig.AddForce(new Vector2(10 * direction, 0));
+        agentRig.velocity = (new Vector2(6 * direction, 0));
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer != 9)
+        if (collision.gameObject.layer != 16)
         {
-        Debug.Log(collision.gameObject.name);
-            Destroy(gameObject);
-        }
-        else
-        {
-            collision.gameObject.GetComponent<Health>().currentHealth--;
-            Debug.Log(collision.gameObject.name);
-            Destroy(gameObject);
+
+            if (collision.gameObject.layer != 9)
+            {
+                Debug.Log(collision.gameObject.name);
+                Destroy(gameObject);
+            }
+            else
+            {
+                collision.gameObject.GetComponent<Health>().currentHealth--;
+                Debug.Log(collision.gameObject.name);
+                Destroy(gameObject);
+            }
         }
     }
 

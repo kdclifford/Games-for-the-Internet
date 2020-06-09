@@ -6,6 +6,7 @@ public class MaggotAttack : MonoBehaviour
 {
     public bool attack = false;
     public GameObject blobPrefab;
+    public GameObject blobSpawn;
 
     public void SpawnBlob()
     {
@@ -20,7 +21,7 @@ public class MaggotAttack : MonoBehaviour
         if (attack)
         {
             GameObject blob = (GameObject)Instantiate(blobPrefab);
-            blob.transform.position = transform.position;
+            blob.transform.position = blobSpawn.transform.position;
             blob.GetComponent<MoveAcidBlob>().direction = (int)transform.localScale.x;
             attack = false;
         }

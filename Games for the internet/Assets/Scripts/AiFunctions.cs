@@ -27,12 +27,12 @@ namespace AiFunctions.Utils
         }
 
 
-        public static void MoveAgentTo(GameObject agent, Vector2Int agentGridPos, float speed, float jumpHeight, Vector2Int goalPos, LayerMask floor, ref List<CNode> path)
+        public static void MoveAgentTo(GameObject agent, Vector2Int agentGridPos, float speed, float jumpHeight, Vector2Int goalPos, List<LayerMask> floor, ref List<CNode> path)
         { 
            Rigidbody2D agentRig = agent.GetComponent<Rigidbody2D>();
             //Vector2Int agentPos = KylesFunctions.GetXY()
 
-            bool isOnGrounded = KylesFunctions.isGrounded2D(agent.GetComponent<Collider2D>(), 0.1f, floor);
+            bool isOnGrounded = KylesFunctions.isGrounded2D(agent.GetComponent<Collider2D>(), 0.1f, floor, agent);
 
            // agent.GetComponent<Rigidbody2D>().velocity = (new Vector2(0, 0));
 

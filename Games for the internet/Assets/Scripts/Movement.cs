@@ -35,6 +35,7 @@ public class Movement : MonoBehaviour
     //Power Up Bools
     public bool wings = false;
     public bool shoot = false;
+    public bool jumpAnimation = false;
 
     // Start is called before the first frame update
     void Start()
@@ -110,11 +111,12 @@ public class Movement : MonoBehaviour
 
 
 
-            if (KylesFunctions.isGrounded2D(normalCollider, 0.1f, floorMask) && Input.GetKeyDown(KeyCode.Space) | Input.GetKeyDown(KeyCode.W))
+            if (KylesFunctions.isGrounded2D(normalCollider, 0.01f, floorMask)&& Input.GetKeyDown(KeyCode.Space) | Input.GetKeyDown(KeyCode.W))
             {
-                if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Jump") | KylesFunctions.isGrounded2D(normalCollider, 0.1f, floorMask))
+                if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Jump") | KylesFunctions.isGrounded2D(normalCollider, 0.01f, floorMask) && raycast(normalCollider, floorMask, 0.01f))
                 {
                     JumpAnimation();
+                    jumpAnimation = true;
                     //playerVelocity = new Vector2(Body.velocity.x, 10);
                     jumpForce.y += (jumpAmount * 100.0f) * 2;
                 }
@@ -309,4 +311,29 @@ public class Movement : MonoBehaviour
         isHurt = false;
     }
 
+    void jumpAnimationOff()
+    {
+        jumpAnimation = false;
+    }
+
+    bool raycast(Collider2D col, List<LayerMask> mask, float distance)
+    {
+        RaycastHit2D hit;
+        Color colour;
+        foreach (LayerMask node in mask)
+        {
+            // hit = Physics2D.Raycast(col.bounds.center, Vector2.down, col.bounds.extents.y + 0.1f, node);
+            hit = Physics2D.BoxCast(col.bounds.center, new Vector3(col.bounds.size.x, col.bounds.extents.y ,0), 0, Vector2.down, col.bounds.extents.y + 0.1f, node);
+
+
+            Debug.DrawRay(col.bounds.center, Vector2.down * (col.bounds.extents.y + 0.1f), Color.red);
+
+
+            if(hit)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

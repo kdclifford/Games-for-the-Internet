@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6088099907044419564}
   - component: {fileID: 6088099907044419567}
   - component: {fileID: 1730080153}
-  m_Layer: 14
+  m_Layer: 20
   m_Name: Mantis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,10 +270,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   floorMask:
-    serializedVersion: 2
+  - serializedVersion: 2
     m_Bits: 256
+  - serializedVersion: 2
+    m_Bits: 8192
+  - serializedVersion: 2
+    m_Bits: 4194304
+  - serializedVersion: 2
+    m_Bits: 2097152
   agentAnimator: {fileID: 6088099907044419479}
-  currentState: 2
+  currentState: 0
   player: {fileID: 0}
   showSight: 0
   attackBox: {fileID: 4250766230623192222}

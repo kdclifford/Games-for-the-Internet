@@ -46,17 +46,41 @@ namespace Functions.Utils
         }
         //Check if object is Grounded
         public static bool isGrounded2D(Collider2D objectCollider, float distance, List<LayerMask> maskList)
-        {            
+        {
             foreach (LayerMask node in maskList)
             {
-           
-                if(BoxCastDebug(objectCollider.bounds.extents.y * 2, objectCollider.bounds.extents.x * 2, objectCollider.bounds.center, Vector2.down, distance, node))
+
+                if (BoxCastDebug(objectCollider.bounds.extents.y * 2, objectCollider.bounds.extents.x * 2, objectCollider.bounds.center, Vector2.down, distance, node))
                 {
                     return true;
-                }                
+                }
             }
             return false;
         }
+
+        // CHECKS TO SEE IF ITS HITTING ITS SELF
+        // check if object is grounded and if only has one object mask
+        public static bool isGrounded2D(Collider2D objectCollider, float distance, LayerMask mask, GameObject currentObject)
+        {
+            //create list with the passed over mask
+            List<LayerMask> newFloor = new List<LayerMask>();
+            newFloor.Add(mask);
+            return isGrounded2D(objectCollider, distance, newFloor, currentObject);
+        }
+        //Check if object is Grounded
+        public static bool isGrounded2D(Collider2D objectCollider, float distance, List<LayerMask> maskList, GameObject currentObject)
+        {
+            foreach (LayerMask node in maskList)
+            {
+
+                if (BoxCastDebug(objectCollider.bounds.extents.y * 2, objectCollider.bounds.extents.x * 2, objectCollider.bounds.center, Vector2.down, distance, node, currentObject))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
 
 
         //Check if Agent is next to a wall
@@ -83,6 +107,55 @@ namespace Functions.Utils
                 rayColour = Color.red;
             }
 
+
+
+            if (scale == 1)
+            {
+                //Debug.DrawRay(agentCollider.bounds.center + new Vector3(agentCollider.bounds.extents.x, 0), Vector3.right * rayWallDistance, rayColour);
+            }
+            else
+            {
+                //Debug.DrawRay(agentCollider.bounds.center - new Vector3(agentCollider.bounds.extents.x, 0), Vector3.left * rayWallDistance, rayColour);
+
+            }
+
+            //Debug.Log(hit.collider);
+
+            return hit.collider != null;
+
+        }
+
+        public static bool IsNextToWall2D(float scale, Collider2D agentCollider, float rayWallDistance, LayerMask wallMask, GameObject currentAgent)
+        {
+            RaycastHit2D hit;
+            if (scale == 1)
+            {
+                hit = Physics2D.BoxCast(agentCollider.bounds.center, agentCollider.bounds.size - new Vector3(0, 0.05f,0), 0f, Vector2.right, rayWallDistance, wallMask);
+            }
+            else
+            {
+                hit = Physics2D.BoxCast(agentCollider.bounds.center, agentCollider.bounds.size - new Vector3(0, 0.05f, 0), 0f, Vector2.left, rayWallDistance, wallMask);
+            }
+
+
+            Color rayColour;
+
+            if (hit.collider != null)
+            {
+                if (hit.collider.gameObject != currentAgent)
+                {
+                    rayColour = Color.green;
+                }
+                else
+                {
+                return false;
+                }
+            }
+            else
+            {
+                rayColour = Color.red;            
+            }
+
             if (scale == 1)
             {
                 Debug.DrawRay(agentCollider.bounds.center + new Vector3(agentCollider.bounds.extents.x, 0), Vector3.right * rayWallDistance, rayColour);
@@ -100,12 +173,12 @@ namespace Functions.Utils
         }
 
 
-        public static bool IsNextToWall2D(float scale, Collider2D agentCollider, float rayWallDistance, List<LayerMask> maskList)
+        public static bool IsNextToWall2D(float scale, Collider2D agentCollider, float rayWallDistance, List<LayerMask> maskList, GameObject currentAgent)
         {
             foreach (LayerMask node in maskList)
             {
 
-                if(IsNextToWall2D(scale, agentCollider, rayWallDistance, node))
+                if (IsNextToWall2D(scale, agentCollider, rayWallDistance, node, currentAgent))
                 {
                     return true;
                 }
@@ -115,8 +188,23 @@ namespace Functions.Utils
             return false;
         }
 
-                //Set all the Grid Values to pathable and non pathable
-                public static Grid GridValues(Grid grid, LayerMask floorMask, float playerHeight, Color gridColour)
+        public static bool IsNextToWall2D(float scale, Collider2D agentCollider, float rayWallDistance, List<LayerMask> maskList)
+        {
+            foreach (LayerMask node in maskList)
+            {
+
+                if (IsNextToWall2D(scale, agentCollider, rayWallDistance, node))
+                {
+                    return true;
+                }
+
+
+            }
+            return false;
+        }
+
+        //Set all the Grid Values to pathable and non pathable
+        public static Grid GridValues(Grid grid, LayerMask floorMask, float playerHeight, Color gridColour)
         {
 
             for (int x = 0; x < grid.GetWidth(); x++)
@@ -152,7 +240,7 @@ namespace Functions.Utils
         public static void GetXY(Vector3 worldPosition, Vector3 originPosition, float cellSize, out Vector2Int XY)
         {
             XY = new Vector2Int(Mathf.FloorToInt((worldPosition - originPosition).x / cellSize), Mathf.FloorToInt((worldPosition - originPosition).y / cellSize));
-          
+
         }
 
         //Get Grid X and Y from Object Position
@@ -217,13 +305,13 @@ namespace Functions.Utils
                     while (path[path.Count - 1].parentNode.x != GoalparentPos && path[path.Count - 1].parentNode.y != GoalparentPos)
                     {
                         path.Add(path[path.Count - 1].parentNode);
-                       // Debug.Log(path[path.Count - 1].x + "  " + path[path.Count - 1].y);
+                        // Debug.Log(path[path.Count - 1].x + "  " + path[path.Count - 1].y);
                     }
 
                     Debug.Log("Path Found");
 
                     //path.RemoveAt(0);
-                    path.RemoveAt(path.Count - 1); 
+                    path.RemoveAt(path.Count - 1);
                 }
 
 
@@ -337,7 +425,7 @@ namespace Functions.Utils
                     {
                         return true;
                     }
-                    
+
                 }
             }
 
@@ -419,8 +507,8 @@ namespace Functions.Utils
 
         }
 
-       // Used to set a box cast and display it on the scene
-       public static bool BoxCastDebug(float height, float width, Vector3 origin, Vector2 direction, float distance, LayerMask hitMask )
+        // Used to set a box cast and display it on the scene
+        public static bool BoxCastDebug(float height, float width, Vector3 origin, Vector2 direction, float distance, LayerMask hitMask)
         {
             RaycastHit2D hit = Physics2D.BoxCast(origin, new Vector2(width, height), 0f, direction, distance, hitMask);
 
@@ -428,27 +516,62 @@ namespace Functions.Utils
             if (hit.collider != null)
             {
                 rayColour = Color.green;
-               
+
             }
             else
             {
                 rayColour = Color.red;
-               
+
             }
 
-            Debug.DrawRay(origin - new Vector3(-(width * 0.5f) , (height * 0.5f)), Vector2.down * (distance), rayColour);// right
-            Debug.DrawRay(origin - new Vector3(width * 0.5f , (height * 0.5f)), Vector2.down * (distance), rayColour); // left
-            Debug.DrawRay(origin - new Vector3(width * 0.5f, (height * 0.5f) + distance), Vector3.right * (width), rayColour);// bottom
-            //Debug.DrawRay(origin + new Vector3(width * 0.5f, (height * 0.5f) + distance), Vector3.left * (width), rayColour);// top
-            Debug.DrawRay(origin - new Vector3(width * 0.5f, (height * 0.5f)), Vector3.right * (width), rayColour);// top
-           // Debug.Log(hit.collider);
+           Debug.DrawRay(origin - new Vector3(-(width * 0.5f), (height * 0.5f)), Vector2.down * (distance), rayColour);// right
+           Debug.DrawRay(origin - new Vector3(width * 0.5f, (height * 0.5f)), Vector2.down * (distance), rayColour); // left
+           Debug.DrawRay(origin - new Vector3(width * 0.5f, (height * 0.5f) + distance), Vector3.right * (width), rayColour);// bottom
+           //Debug.DrawRay(origin + new Vector3(width * 0.5f, (height * 0.5f) + distance), Vector3.left * (width), rayColour);// top
+           Debug.DrawRay(origin - new Vector3(width * 0.5f, (height * 0.5f)), Vector3.right * (width), rayColour);// top
+            // Debug.Log(hit.collider);
 
 
             return hit.collider != null;
 
         }
 
+        //Check it not hitting its self
+        // Used to set a box cast and display it on the scene
+        public static bool BoxCastDebug(float height, float width, Vector3 origin, Vector2 direction, float distance, LayerMask hitMask, GameObject currentObject)
+        {
+            RaycastHit2D hit = Physics2D.BoxCast(origin, new Vector2(width, height), 0f, direction, distance, hitMask);
 
+            Color rayColour = Color.red;
+            if (hit.collider != null)
+            {
+                if(hit.collider.gameObject != currentObject)
+                {
+                rayColour = Color.green;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            else
+            {
+                rayColour = Color.red;
+
+            }
+
+            Debug.DrawRay(origin - new Vector3(-(width * 0.5f), (height * 0.5f)), Vector2.down * (distance), rayColour);// right
+            Debug.DrawRay(origin - new Vector3(width * 0.5f, (height * 0.5f)), Vector2.down * (distance), rayColour); // left
+            Debug.DrawRay(origin - new Vector3(width * 0.5f, (height * 0.5f) + distance), Vector3.right * (width), rayColour);// bottom
+            //Debug.DrawRay(origin + new Vector3(width * 0.5f, (height * 0.5f) + distance), Vector3.left * (width), rayColour);// top
+            Debug.DrawRay(origin - new Vector3(width * 0.5f, (height * 0.5f)), Vector3.right * (width), rayColour);// top
+            // Debug.Log(hit.collider);
+
+
+            return hit.collider != null;
+
+        }
 
 
 

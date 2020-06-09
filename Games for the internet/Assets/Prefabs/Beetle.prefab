@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 1955473209111012276}
   - component: {fileID: 1955473209111012275}
   - component: {fileID: 1955473209111012278}
-  m_Layer: 14
+  m_Layer: 21
   m_Name: Beetle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

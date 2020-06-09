@@ -9,9 +9,9 @@ using UnityEngine;
 public class AiFSM : MonoBehaviour
 {
     public LayerMask playerMask;
-    public LayerMask floorMask;
+    public List<LayerMask> floorMask;
     public Animator agentAnimator;
-    public AiStates currentState = AiStates.Chase;
+    public AiStates currentState = AiStates.Patrol;
     private Grid terrainMap;
     private AiAgentInfo agentInfo;
     private Collider2D agentCollider;
@@ -55,6 +55,17 @@ public class AiFSM : MonoBehaviour
         if (currentState == AiStates.Patrol)
         {
             AiAnimations.Walk(agentAnimator);
+            if (AiMaths.SightSphere(agentCollider, agentInfo.sightRange, playerMask))
+            {
+                currentState = AiStates.Chase;
+            }
+
+            else if (KylesFunctions.IsNextToWall2D(transform.localScale.x, agentCollider.GetComponent<Collider2D>(), 0.1f, floorMask, gameObject))
+            {
+                transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            }
+
+            GetComponent<Rigidbody2D>().velocity = new Vector2(3 * (int)transform.localScale.x, 0);
         }
         else if (currentState == AiStates.Chase)
         {
@@ -73,15 +84,15 @@ public class AiFSM : MonoBehaviour
                 if (AiMaths.SightSphere(agentCollider, agentInfo.sightRange, playerMask))
                 {
 
-                        Vector2 agentNewHeight = new Vector2(GetComponent<CapsuleCollider2D>().bounds.center.x, GetComponent<CapsuleCollider2D>().bounds.center.y - GetComponent<CapsuleCollider2D>().bounds.extents.y);
+                    Vector2 agentNewHeight = new Vector2(GetComponent<CapsuleCollider2D>().bounds.center.x, GetComponent<CapsuleCollider2D>().bounds.center.y - GetComponent<CapsuleCollider2D>().bounds.extents.y);
                     if (!getPlayerPos)
                     {
                         // KylesFunctions.GetXY(agentNewHeight, terrainMap.GetOriginPos(), terrainMap.GetCellSize(), out playerGridPos);
                         KylesFunctions.GetXY(player.transform.position, terrainMap.GetOriginPos(), terrainMap.GetCellSize(), out playerGridPos);
-                        getPlayerPos = true;                        
+                        getPlayerPos = true;
                     }
 
-                        KylesFunctions.GetXY(agentNewHeight, terrainMap.GetOriginPos(), terrainMap.GetCellSize(), out agentGridPos);
+                    KylesFunctions.GetXY(agentNewHeight, terrainMap.GetOriginPos(), terrainMap.GetCellSize(), out agentGridPos);
 
                     KylesFunctions.GetXY(player.transform.position, terrainMap.GetOriginPos(), terrainMap.GetCellSize(), out newPlayerPos);
 
@@ -101,8 +112,12 @@ public class AiFSM : MonoBehaviour
                         findPath = false;
                     }
                 }
+                else
+                {
+                    currentState = AiStates.Patrol;
+                }
 
-                
+
 
             }
         }
@@ -115,7 +130,7 @@ public class AiFSM : MonoBehaviour
                 timer = 3;
             }
 
-           else if (!isAttacking && timer > 3.0f)
+            else if (!isAttacking && timer > 3.0f)
             {
                 isAttacking = true;
 
@@ -128,7 +143,7 @@ public class AiFSM : MonoBehaviour
                 AiAnimations.Walk(agentAnimator);
             }
 
-           
+
 
 
         }
