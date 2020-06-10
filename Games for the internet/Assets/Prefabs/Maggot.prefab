@@ -98,9 +98,10 @@ GameObject:
   - component: {fileID: 7729774703796206675}
   - component: {fileID: 6714397589773971113}
   - component: {fileID: 3137611084170197737}
+  - component: {fileID: 1671920104}
   m_Layer: 22
   m_Name: Maggot
-  m_TagString: Untagged
+  m_TagString: Maggot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -202,7 +203,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -210,7 +211,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 5
+  m_Constraints: 4
 --- !u!114 &2417973650036411470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brokenPrefab: {fileID: 1739293161950901359, guid: f3bf1e1af50e1ef4cb0d8424cd5a45cc,
     type: 3}
+  die: 0
 --- !u!114 &5045635586798823636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,8 +242,9 @@ MonoBehaviour:
   canFly: 0
   jumpHeight: 100
   speed: 20
-  health: 10
+  health: 1
   sightRange: 5
+  isJumping: 0
 --- !u!114 &7729774703796206675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,10 +291,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mask:
   - serializedVersion: 2
-    m_Bits: 16384
-  - serializedVersion: 2
-    m_Bits: 524288
-  - serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1048576
   - serializedVersion: 2
     m_Bits: 512
+  - serializedVersion: 2
+    m_Bits: 256
+--- !u!114 &1671920104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7718973050912539423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d9ffc9898203b4a8d2f33d55d16267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mask:
+  - serializedVersion: 2
+    m_Bits: 16384
+  - serializedVersion: 2
+    m_Bits: 512
+  - serializedVersion: 2
+    m_Bits: 256

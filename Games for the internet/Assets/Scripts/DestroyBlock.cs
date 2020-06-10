@@ -17,6 +17,7 @@ public class DestroyBlock : MonoBehaviour
     private SpriteRenderer sRend;
 
     private int health = 0;
+    public bool die = false;
 
     private GameObject uiInfo;
     private bool spawnOnce = false;
@@ -62,6 +63,8 @@ public class DestroyBlock : MonoBehaviour
             }
 
         }
+
+       
         //else if (health == 2)
         //{
         //    gameObject.GetComponent<SpriteRenderer>().color = colour1;
@@ -74,4 +77,20 @@ public class DestroyBlock : MonoBehaviour
 
 
     }
+
+    private void Update()
+    {
+        if (die)
+        {
+            Destroy(gameObject);
+            GameObject broken = (GameObject)Instantiate(brokenPrefab);
+
+            //Set position of barrel
+            broken.transform.position = transform.position;
+            broken.transform.rotation = transform.rotation;
+            broken.transform.localScale = transform.localScale;
+            spawnOnce = true;
+        }
+    }
+
 }

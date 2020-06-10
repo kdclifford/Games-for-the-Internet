@@ -131,11 +131,11 @@ namespace Functions.Utils
             RaycastHit2D hit;
             if (scale == 1)
             {
-                hit = Physics2D.BoxCast(agentCollider.bounds.center, agentCollider.bounds.size -new Vector3(0, agentCollider.bounds.extents.y), 0f, Vector2.right, rayWallDistance, wallMask);
+                hit = Physics2D.BoxCast(agentCollider.bounds.center, agentCollider.bounds.size - new Vector3(0, agentCollider.bounds.extents.y), 0f, Vector2.right, rayWallDistance, wallMask);
             }
             else
             {
-                hit = Physics2D.BoxCast(agentCollider.bounds.center, agentCollider.bounds.size - -new Vector3(0, agentCollider.bounds.extents.y), 0f, Vector2.left, rayWallDistance, wallMask);
+                hit = Physics2D.BoxCast(agentCollider.bounds.center, agentCollider.bounds.size - new Vector3(0, agentCollider.bounds.extents.y), 0f, Vector2.left, rayWallDistance, wallMask);
             }
 
 
@@ -575,6 +575,54 @@ namespace Functions.Utils
             return hit.collider != null;
 
         }
+
+
+        //Ray casts to check to see if the maggot shold flip directions
+       public static bool maggotRaycasts(Collider2D agentCol, int scale, List<LayerMask> mask)
+        {
+            RaycastHit2D hit;
+            foreach(LayerMask node in mask)
+            {
+                if(scale == 1)
+                {
+                 hit = Physics2D.Raycast(agentCol.bounds.center, Vector2.right, agentCol.bounds.extents.x + 0.1f, node);
+                }
+                else
+                {
+                   hit = Physics2D.Raycast(agentCol.bounds.center, Vector2.left, agentCol.bounds.extents.x + 0.1f, node);
+                }
+                    if(hit)
+                {
+                    Debug.Log(hit.collider.name);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        //Ray casts to check to see if the maggot is trapped
+        public static bool maggotTrapped(Collider2D agentCol, List<LayerMask> mask)
+        {
+            RaycastHit2D hit;
+            RaycastHit2D hit2;
+            foreach (LayerMask node in mask)
+            {                
+                    hit = Physics2D.Raycast(agentCol.bounds.center, Vector2.right, agentCol.bounds.extents.x + 0.1f, node);
+                if (hit)
+                {
+                    foreach (LayerMask node2 in mask)
+                    {
+                        hit2 = Physics2D.Raycast(agentCol.bounds.center, Vector2.left, agentCol.bounds.extents.x + 0.1f, node2);
+                        if(hit && hit2)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
 
 
 

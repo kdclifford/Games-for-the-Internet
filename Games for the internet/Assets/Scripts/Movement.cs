@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.Animations;
 using Functions.Utils;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -289,7 +290,7 @@ public class Movement : MonoBehaviour
         CurrentAnimation.SetInteger("AnimationPlayer", 5);
     }
 
-    void DieAnimation()
+    public void DieAnimation()
     {
         CurrentAnimation.SetInteger("AnimationPlayer", 6);
     }
@@ -333,4 +334,7 @@ public class Movement : MonoBehaviour
         }
         return false;
     }
+
+  
+
 }
