@@ -25,7 +25,7 @@ public class MaggotAi : MonoBehaviour
             GetComponent<MaggotAttack>().attack = true;
         }
         
-            agentRig.velocity = new Vector2(3 * (int)transform.localScale.x, 0);
+            agentRig.velocity = new Vector2(3 * (int)transform.localScale.x, agentRig.velocity.y);
         
     }
 }

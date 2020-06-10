@@ -9,6 +9,7 @@ public class AiAgentInfo : MonoBehaviour
     public float speed = 0;
     public int health = 0;
     public float sightRange = 0;
+    public bool isJumping = false;
 
     private void Update()
     {

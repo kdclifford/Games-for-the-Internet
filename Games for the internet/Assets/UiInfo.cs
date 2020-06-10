@@ -5,7 +5,10 @@ using UnityEngine;
 public class UiInfo : MonoBehaviour
 {
     public GameObject score;
-    public GameObject powerUp;
+    public GameObject time;
+    public GameObject powerUpWings;
+    public GameObject powerUpBlock;
+    public GameObject powerUpBlob;
 
     // Start is called before the first frame update
     void Start()

@@ -82,47 +82,34 @@ public class Movement : MonoBehaviour
             slamCollider.SetActive(false);
         }
 
-     
-
-     if (KylesFunctions.isGrounded2D(normalCollider, 0.1f, floorMask) && !isAttacking && Input.GetKeyDown(KeyCode.J))
+        if (KylesFunctions.isGrounded2D(normalCollider, 0.1f, floorMask) && !isAttacking && Input.GetKeyDown(KeyCode.J))
         {
             isAttacking = true;
-
             StartCoroutine(DoAttack());
+            jumpAnimation = false;
 
             Body.velocity = new Vector2(0, Body.velocity.y);
             playerVelocity = new Vector2(0, Body.velocity.y);
-
-
         }
-
-       
-
-
-
-
+        else
+        {
+            IdleAnimation();
+        }
 
         if (!isAttacking)
         {
-
-
-
-
-
-
-
-            if (KylesFunctions.isGrounded2D(normalCollider, 0.01f, floorMask)&& Input.GetKeyDown(KeyCode.Space) | Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.Space) | Input.GetKeyDown(KeyCode.W))
             {
-                if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Jump") | KylesFunctions.isGrounded2D(normalCollider, 0.01f, floorMask) && raycast(normalCollider, floorMask, 0.01f))
+                if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Jump") && KylesFunctions.isGrounded2D(normalCollider, 0.01f, floorMask) && raycast(normalCollider, floorMask, 0.01f))
                 {
+                    
                     JumpAnimation();
                     jumpAnimation = true;
+                    
                     //playerVelocity = new Vector2(Body.velocity.x, 10);
                     jumpForce.y += (jumpAmount * 100.0f) * 2;
                 }
             }
-
-
 
             else if (Input.GetKey(KeyCode.DownArrow) | Input.GetKey(KeyCode.S))
             {
@@ -146,7 +133,10 @@ public class Movement : MonoBehaviour
 
                 if (!crouch)
                 {
-                    MoveAnimation();
+                    if (!jumpAnimation)
+                    {
+                        MoveAnimation();
+                    }
                 }
             }
 
@@ -157,16 +147,21 @@ public class Movement : MonoBehaviour
                 FlipDirectionLeft();
                 if (!crouch)
                 {
-                    MoveAnimation();
+                    if (!jumpAnimation)
+                    {
+                        MoveAnimation();
+                    }
                 }
             }
             else
             {
+               
                 if (!crouch)
                 {
-                    
+                    if (!jumpAnimation)
+                    {
                         IdleAnimation();
-                    
+                    }
                     Body.velocity = new Vector2(0, Body.velocity.y);
                     playerVelocity = new Vector2(0, Body.velocity.y);
                     //isJumping = 0;
@@ -191,6 +186,7 @@ public class Movement : MonoBehaviour
 
         }
 
+       
 
         if (isHurt)
         {
@@ -206,6 +202,7 @@ public class Movement : MonoBehaviour
 
     IEnumerator DoAttack()
     {
+        
         AttackAnimation();
         attackBox.SetActive(true);
         yield return new WaitForSeconds(0.3f);
@@ -323,7 +320,7 @@ public class Movement : MonoBehaviour
         foreach (LayerMask node in mask)
         {
             // hit = Physics2D.Raycast(col.bounds.center, Vector2.down, col.bounds.extents.y + 0.1f, node);
-            hit = Physics2D.BoxCast(col.bounds.center, new Vector3(col.bounds.size.x, col.bounds.extents.y ,0), 0, Vector2.down, col.bounds.extents.y + 0.1f, node);
+            hit = Physics2D.BoxCast(col.bounds.center, new Vector3(col.bounds.size.x - 0.01f, col.bounds.extents.y ,0), 0, Vector2.down, col.bounds.extents.y + 0.1f, node);
 
 
             Debug.DrawRay(col.bounds.center, Vector2.down * (col.bounds.extents.y + 0.1f), Color.red);

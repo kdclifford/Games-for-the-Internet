@@ -54,18 +54,19 @@ public class AiFSM : MonoBehaviour
 
         if (currentState == AiStates.Patrol)
         {
+            path.Clear();
             AiAnimations.Walk(agentAnimator);
             if (AiMaths.SightSphere(agentCollider, agentInfo.sightRange, playerMask))
             {
                 currentState = AiStates.Chase;
             }
 
-            else if (KylesFunctions.IsNextToWall2D(transform.localScale.x, agentCollider.GetComponent<Collider2D>(), 0.1f, floorMask, gameObject))
+            else if (AiMaths.raycastSides(agentCollider.GetComponent<Collider2D>(), floorMask, (int)transform.localScale.x, gameObject))
             {
                 transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             }
 
-            GetComponent<Rigidbody2D>().velocity = new Vector2(3 * (int)transform.localScale.x, 0);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(3 * (int)transform.localScale.x, GetComponent<Rigidbody2D>().velocity.y);
         }
         else if (currentState == AiStates.Chase)
         {
@@ -93,7 +94,6 @@ public class AiFSM : MonoBehaviour
                     }
 
                     KylesFunctions.GetXY(agentNewHeight, terrainMap.GetOriginPos(), terrainMap.GetCellSize(), out agentGridPos);
-
                     KylesFunctions.GetXY(player.transform.position, terrainMap.GetOriginPos(), terrainMap.GetCellSize(), out newPlayerPos);
 
 
@@ -105,6 +105,10 @@ public class AiFSM : MonoBehaviour
                         findPath = true;
                     }
 
+                    if(path.Count == 0 && !KylesFunctions.IsNextToWall2D(transform.localScale.x, agentCollider, 0.5f, playerMask))
+                    {
+                        findPath = true;
+                    }
 
                     if (findPath)
                     {
@@ -147,11 +151,18 @@ public class AiFSM : MonoBehaviour
 
 
         }
+        else if (currentState == AiStates.AmountOfStates)
+        {
+
+        }
 
 
 
+        }
+   public void addJumpForce()
+    {
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(agentInfo.speed, agentInfo.jumpHeight));
     }
-
     private void FixedUpdate()
     {
         if (path.Count >= 1)

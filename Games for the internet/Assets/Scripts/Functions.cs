@@ -89,17 +89,18 @@ namespace Functions.Utils
             RaycastHit2D hit;
             if (scale == 1)
             {
-                hit = Physics2D.BoxCast(agentCollider.bounds.center, agentCollider.bounds.size, 0f, Vector2.right, rayWallDistance, wallMask);
+                hit = Physics2D.BoxCast(agentCollider.bounds.center, agentCollider.bounds.size - new Vector3 (0, agentCollider.bounds.extents.y), 0f, Vector2.right, rayWallDistance, wallMask);
             }
             else
             {
-                hit = Physics2D.BoxCast(agentCollider.bounds.center, agentCollider.bounds.size, 0f, Vector2.left, rayWallDistance, wallMask);
+                hit = Physics2D.BoxCast(agentCollider.bounds.center, agentCollider.bounds.size - new Vector3(0, agentCollider.bounds.extents.y), 0f, Vector2.left, rayWallDistance, wallMask);
             }
 
 
             Color rayColour;
             if (hit.collider != null)
             {
+                Debug.Log(hit.collider.name);
                 rayColour = Color.green;
             }
             else
@@ -130,11 +131,11 @@ namespace Functions.Utils
             RaycastHit2D hit;
             if (scale == 1)
             {
-                hit = Physics2D.BoxCast(agentCollider.bounds.center, agentCollider.bounds.size - new Vector3(0, 0.05f,0), 0f, Vector2.right, rayWallDistance, wallMask);
+                hit = Physics2D.BoxCast(agentCollider.bounds.center, agentCollider.bounds.size -new Vector3(0, agentCollider.bounds.extents.y), 0f, Vector2.right, rayWallDistance, wallMask);
             }
             else
             {
-                hit = Physics2D.BoxCast(agentCollider.bounds.center, agentCollider.bounds.size - new Vector3(0, 0.05f, 0), 0f, Vector2.left, rayWallDistance, wallMask);
+                hit = Physics2D.BoxCast(agentCollider.bounds.center, agentCollider.bounds.size - -new Vector3(0, agentCollider.bounds.extents.y), 0f, Vector2.left, rayWallDistance, wallMask);
             }
 
 
@@ -144,6 +145,8 @@ namespace Functions.Utils
             {
                 if (hit.collider.gameObject != currentAgent)
                 {
+                    Debug.Log(hit.collider.name);
+
                     rayColour = Color.green;
                 }
                 else

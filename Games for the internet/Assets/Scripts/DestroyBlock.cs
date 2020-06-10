@@ -19,6 +19,7 @@ public class DestroyBlock : MonoBehaviour
     private int health = 0;
 
     private GameObject uiInfo;
+    private bool spawnOnce = false;
     public void Start()
     {
         uiInfo = GameObject.FindGameObjectWithTag("UiInfo");
@@ -46,7 +47,7 @@ public class DestroyBlock : MonoBehaviour
             agentInfo.health--;
             sRend.material = whiteMat;
             Invoke("ResetMat", 0.2f);
-            if (agentInfo.health <= 0)
+            if (agentInfo.health <= 0 && !spawnOnce)
             {
                 Destroy(gameObject);
                 GameObject broken = (GameObject)Instantiate(brokenPrefab);
@@ -55,7 +56,8 @@ public class DestroyBlock : MonoBehaviour
                 broken.transform.position = transform.position;
                 broken.transform.rotation = transform.rotation;
                 broken.transform.localScale = transform.localScale;
-                //Destory old barrel
+                spawnOnce = true;
+               
 
             }
 

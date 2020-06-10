@@ -8,9 +8,10 @@ public class ScoreScript : MonoBehaviour
     public int startingScore;
     private int currentScore;
     private float scoreTimer;
-    public GameObject score;
-
-
+    public GameObject time;
+    private int unitSecondsTimer = 0;
+    private int tensSecondsTimer = 0;
+    private int minsTimer = 0;
 
 
     // Start is called before the first frame update
@@ -26,6 +27,20 @@ public class ScoreScript : MonoBehaviour
 
         if(scoreTimer > 1)
         {
+            unitSecondsTimer++;
+            if(unitSecondsTimer == 10)
+            {
+                unitSecondsTimer = 0;
+                tensSecondsTimer++;
+            }
+
+            if (tensSecondsTimer == 6)
+            {
+                tensSecondsTimer = 0;
+                minsTimer++;
+            }
+
+            time.GetComponent<Text>().text = "Time:" + minsTimer + ":" + tensSecondsTimer + "" + unitSecondsTimer;
             currentScore--;
             scoreTimer = 0f;
         }
