@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7837045979143574867}
   - component: {fileID: 7764314274556573728}
-  m_Layer: 14
+  m_Layer: 18
   m_Name: AttackBox
   m_TagString: AttackBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7837045979143574867
 Transform:
   m_ObjectHideFlags: 0
@@ -41,7 +41,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.38182783, y: -0.11422181}
@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 1955473209111012276}
   - component: {fileID: 1955473209111012275}
   - component: {fileID: 1955473209111012278}
+  - component: {fileID: 504710420}
   m_Layer: 21
   m_Name: Beetle
   m_TagString: Untagged
@@ -180,7 +181,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.23
-  m_Material: {fileID: 6200000, guid: 526b508b9b61f004ea838601d8a0ff2c, type: 2}
+  m_Material: {fileID: 6200000, guid: bd4df184b270ac04294867a4bc19a949, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -194,7 +195,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 1955473209111012287}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 526b508b9b61f004ea838601d8a0ff2c, type: 2}
+  m_Material: {fileID: 6200000, guid: bd4df184b270ac04294867a4bc19a949, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -215,6 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brokenPrefab: {fileID: 7922907284398334572, guid: 92aad6e93c3a1c84b9832c20665706b9,
     type: 3}
+  die: 0
 --- !u!114 &1955473209111012278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,3 +234,19 @@ MonoBehaviour:
   speed: 0
   health: 5
   sightRange: 0
+  isJumping: 0
+--- !u!114 &504710420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955473209111012287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ec42d69b0867104883db0f551fe4995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  agentAnim: {fileID: 1955473209111012274}
+  attackBox: {fileID: 565469119033472821}

@@ -36,6 +36,8 @@ public class Movement : MonoBehaviour
     //Power Up Bools
     public bool wings = false;
     public bool shoot = false;
+    public bool block = false;
+
     public bool jumpAnimation = false;
 
     // Start is called before the first frame update
@@ -50,7 +52,7 @@ public class Movement : MonoBehaviour
 
     bool jump = false;
     bool crouch = false;
-
+   
     // Update is called once per frame
     void Update()
     {
@@ -335,6 +337,6 @@ public class Movement : MonoBehaviour
         return false;
     }
 
-  
+   
 
 }

@@ -25,8 +25,13 @@ public class MoveAcidBlob : MonoBehaviour
     {
         if (collision.gameObject.layer != 16)
         {
+            if(gameObject.layer == 9 &&  collision.gameObject.layer == 20 | collision.gameObject.layer == 21 | collision.gameObject.layer == 22 )
+            {
+                collision.gameObject.GetComponent<DestroyBlock>().TakeDamage();
+                Destroy(gameObject);
+            }
 
-            if (collision.gameObject.layer != 9)
+           else if (collision.gameObject.layer != 9)
             {
                 Debug.Log(collision.gameObject.name);
                 Destroy(gameObject);

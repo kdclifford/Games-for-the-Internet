@@ -64,6 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Fly.cs" />
+    <Compile Include="Assets\MoveBlock.cs" />
+    <Compile Include="Assets\PowerUpManger.cs" />
     <Compile Include="Assets\ReturnToMenu.cs" />
     <Compile Include="Assets\Scripts\AI_Script.cs" />
     <Compile Include="Assets\Scripts\AStar.cs" />

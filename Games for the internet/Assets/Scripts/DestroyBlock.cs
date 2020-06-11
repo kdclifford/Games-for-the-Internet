@@ -42,25 +42,11 @@ public class DestroyBlock : MonoBehaviour
 
         if (collision.gameObject.tag == "AttackBox" && collision.gameObject.layer == 9)
         {
-            Debug.Log(collision.name);
+            //Debug.Log(collision.name);
 
-            uiInfo.GetComponent<UiInfo>().score.GetComponent<ScoreScript>().AddScore(1);
-            agentInfo.health--;
-            sRend.material = whiteMat;
-            Invoke("ResetMat", 0.2f);
-            if (agentInfo.health <= 0 && !spawnOnce)
-            {
-                Destroy(gameObject);
-                GameObject broken = (GameObject)Instantiate(brokenPrefab);
-
-                //Set position of barrel
-                broken.transform.position = transform.position;
-                broken.transform.rotation = transform.rotation;
-                broken.transform.localScale = transform.localScale;
-                spawnOnce = true;
-               
-
-            }
+            TakeDamage();
+          
+          
 
         }
 
@@ -78,6 +64,14 @@ public class DestroyBlock : MonoBehaviour
 
     }
 
+    public void TakeDamage()
+    {
+        uiInfo.GetComponent<UiInfo>().score.GetComponent<ScoreScript>().AddScore(1);
+        agentInfo.health--;
+        sRend.material = whiteMat;
+        Invoke("ResetMat", 0.2f);
+    }
+
     private void Update()
     {
         if (die)
@@ -91,6 +85,22 @@ public class DestroyBlock : MonoBehaviour
             broken.transform.localScale = transform.localScale;
             spawnOnce = true;
         }
+
+        if (agentInfo.health <= 0 && !spawnOnce)
+        {
+            Destroy(gameObject);
+            GameObject broken = (GameObject)Instantiate(brokenPrefab);
+
+            //Set position of barrel
+            broken.transform.position = transform.position;
+            broken.transform.rotation = transform.rotation;
+            broken.transform.localScale = transform.localScale;
+            spawnOnce = true;
+
+
+        }
+
+
     }
 
 }
