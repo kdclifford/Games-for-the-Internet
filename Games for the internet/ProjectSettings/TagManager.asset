@@ -12,6 +12,7 @@ TagManager:
   - UiInfo
   - Maggot
   - Block
+  - AudioManager
   layers:
   - Default
   - TransparentFX

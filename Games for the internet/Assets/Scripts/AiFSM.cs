@@ -33,9 +33,11 @@ public class AiFSM : MonoBehaviour
     public GameObject attackBox;
     private bool isAttacking;
     public float timer = 0;
+    private AudioManager audioManager;
 
     private void Start()
     {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         //terrainMap = GameObject.FindGameObjectWithTag("TerrainMap").GetComponent<GridSettings>().GetGrid();
         agentInfo = GetComponent<AiAgentInfo>();
         agentCollider = GetComponent<Collider2D>();
@@ -137,6 +139,7 @@ public class AiFSM : MonoBehaviour
             else if (!isAttacking && timer > 3.0f)
             {
                 isAttacking = true;
+                audioManager.Play("MantisAttack", gameObject);
 
                 StartCoroutine(DoAttack());
                 timer = 0;

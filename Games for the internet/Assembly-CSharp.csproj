@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\AiFunctions.cs" />
     <Compile Include="Assets\Scripts\AiStates.cs" />
     <Compile Include="Assets\Scripts\AnimatorController.cs" />
+    <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\BoxOutline.cs" />
     <Compile Include="Assets\Scripts\BreakablePhysics.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Assets\Scripts\Parallax.cs" />
     <Compile Include="Assets\Scripts\RotatePowerUp.cs" />
     <Compile Include="Assets\Scripts\ScoreScript.cs" />
+    <Compile Include="Assets\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\SpawnPowerUp.cs" />
     <Compile Include="Assets\Scripts\ToggleFunctions.cs" />
     <Compile Include="Assets\Scripts\UiInfo.cs" />

@@ -39,10 +39,12 @@ public class Movement : MonoBehaviour
     public bool block = false;
 
     public bool jumpAnimation = false;
-
+    
+    private AudioManager audioManager;
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         PlayerSprite = gameObject.GetComponent<SpriteRenderer>();
         Body = gameObject.GetComponent<Rigidbody2D>();
         normalCollider = gameObject.GetComponent<CapsuleCollider2D>();
@@ -61,6 +63,8 @@ public class Movement : MonoBehaviour
         if (!jump && Input.GetKeyDown(KeyCode.Space))
         {
             jump = true;
+           
+
         }
         else if (KylesFunctions.isGrounded2D(normalCollider, 0.1f, floorMask) | KylesFunctions.isGrounded2D(crouchCollider, 0.1f, floorMask))
         {
@@ -281,6 +285,7 @@ public class Movement : MonoBehaviour
     void JumpAnimation()
     {
         CurrentAnimation.SetInteger("AnimationPlayer", 3);
+        audioManager.Play("PlayerJump", gameObject);
     }
 
     void DropAnimation()
