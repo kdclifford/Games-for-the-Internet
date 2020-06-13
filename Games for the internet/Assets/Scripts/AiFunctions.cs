@@ -27,11 +27,12 @@ namespace AiFunctions.Utils
         }
 
 
-        public static void MoveAgentTo(GameObject agent, Vector2Int agentGridPos, float speed, float jumpHeight, Vector2Int goalPos, List<LayerMask> floor, ref List<CNode> path)
+        public static void MoveAgentTo(GameObject agent, Vector2Int agentGridPos, float speed, float jumpHeight, Vector2Int goalPos, List<LayerMask> floor, ref List<CNode> path, AudioManager audio)
         {
             Rigidbody2D agentRig = agent.GetComponent<Rigidbody2D>();
             //Vector2Int agentPos = KylesFunctions.GetXY()
-
+           
+            
             // bool isOnGrounded = KylesFunctions.isGrounded2D(agent.GetComponent<Collider2D>(), 0.1f, floor, agent);
             // bool isOnGrounded = Physics2D.Raycast(agent.GetComponent<Collider2D>().bounds.center, Vector2.down, agent.GetComponent<Collider2D>().bounds.extents.y + 0.1f, 11);
             bool isOnGrounded = AiMaths.raycast(agent.GetComponent<Collider2D>(), floor, 0);
@@ -77,7 +78,7 @@ namespace AiFunctions.Utils
                 if (KylesFunctions.IsNextToWall2D(agent.transform.localScale.x, agent.GetComponent<Collider2D>(), 0.5f, floor) && isOnGrounded)
                 {
 
-
+                    audio.Play("MantisJump", agent);
                     agentRig.velocity = (new Vector2(0, jumpHeight));
                     //agentRig.AddForce(new Vector2(speed * (int)agent.transform.localScale.x, agentRig.velocity.y));
                     //agentRig.AddForce(new Vector2(directionalSpeed, 0));

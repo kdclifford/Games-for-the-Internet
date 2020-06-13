@@ -7,11 +7,13 @@ public class MoveAcidBlob : MonoBehaviour
     //Direction the blob willl travel
     public int direction;
     private Rigidbody2D agentRig;
-
+    private AudioManager audio;
 
     void Start()
     {
         agentRig = GetComponent<Rigidbody2D>();
+        audio = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audio.Play("BlobShot", gameObject);
     }
 
 

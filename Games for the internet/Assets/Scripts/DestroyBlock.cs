@@ -42,9 +42,9 @@ public class DestroyBlock : MonoBehaviour
 
         if (collision.gameObject.tag == "AttackBox" && collision.gameObject.layer == 9)
         {
-            //Debug.Log(collision.name);
+            Debug.Log(collision.name);
 
-            TakeDamage();
+             TakeDamage();
           
           
 

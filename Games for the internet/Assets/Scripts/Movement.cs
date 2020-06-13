@@ -94,7 +94,7 @@ public class Movement : MonoBehaviour
             isAttacking = true;
             StartCoroutine(DoAttack());
             jumpAnimation = false;
-
+            
             Body.velocity = new Vector2(0, Body.velocity.y);
             playerVelocity = new Vector2(0, Body.velocity.y);
         }
@@ -210,7 +210,7 @@ public class Movement : MonoBehaviour
     IEnumerator DoAttack()
     {
         
-        AttackAnimation();
+        AttackAnimation();        
         attackBox.SetActive(true);
         yield return new WaitForSeconds(0.3f);
         //yield return new WaitForSeconds(0.5f);
@@ -273,7 +273,7 @@ public class Movement : MonoBehaviour
     }
 
     void MoveAnimation()
-    {
+    {       
         CurrentAnimation.SetInteger("AnimationPlayer", 1);
     }
 
@@ -319,6 +319,16 @@ public class Movement : MonoBehaviour
     void jumpAnimationOff()
     {
         jumpAnimation = false;
+    }
+
+    void PlayBiteSound()
+    {
+        audioManager.Play("PlayerBite", gameObject);
+    }
+
+    void PlayMoveSound()
+    {
+        audioManager.Play("PlayerWalk", gameObject);
     }
 
     bool raycast(Collider2D col, List<LayerMask> mask, float distance)

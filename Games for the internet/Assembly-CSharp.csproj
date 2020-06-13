@@ -63,10 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Fly.cs" />
-    <Compile Include="Assets\MoveBlock.cs" />
-    <Compile Include="Assets\PowerUpManger.cs" />
-    <Compile Include="Assets\ReturnToMenu.cs" />
     <Compile Include="Assets\Scripts\AI_Script.cs" />
     <Compile Include="Assets\Scripts\AStar.cs" />
     <Compile Include="Assets\Scripts\AiAgentInfo.cs" />
@@ -82,6 +78,7 @@
     <Compile Include="Assets\Scripts\DayandNightCycle.cs" />
     <Compile Include="Assets\Scripts\DestroyBlock.cs" />
     <Compile Include="Assets\Scripts\FlatternGrass.cs" />
+    <Compile Include="Assets\Scripts\Fly.cs" />
     <Compile Include="Assets\Scripts\FollowMouse.cs" />
     <Compile Include="Assets\Scripts\Functions.cs" />
     <Compile Include="Assets\Scripts\Grid.cs" />
@@ -93,8 +90,11 @@
     <Compile Include="Assets\Scripts\MenuScript.cs" />
     <Compile Include="Assets\Scripts\MouseColour.cs" />
     <Compile Include="Assets\Scripts\MoveAcidBlob.cs" />
+    <Compile Include="Assets\Scripts\MoveBlock.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\Parallax.cs" />
+    <Compile Include="Assets\Scripts\PowerUpManger.cs" />
+    <Compile Include="Assets\Scripts\ReturnToMenu.cs" />
     <Compile Include="Assets\Scripts\RotatePowerUp.cs" />
     <Compile Include="Assets\Scripts\ScoreScript.cs" />
     <Compile Include="Assets\Scripts\Sound.cs" />

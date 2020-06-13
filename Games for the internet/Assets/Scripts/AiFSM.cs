@@ -171,7 +171,7 @@ public class AiFSM : MonoBehaviour
         if (path.Count >= 1)
         {
 
-            AiMaths.MoveAgentTo(gameObject, agentGridPos, agentInfo.speed, agentInfo.jumpHeight, new Vector2Int(path[path.Count - 1].x, path[path.Count - 1].y), floorMask, ref path);
+            AiMaths.MoveAgentTo(gameObject, agentGridPos, agentInfo.speed, agentInfo.jumpHeight, new Vector2Int(path[path.Count - 1].x, path[path.Count - 1].y), floorMask, ref path, audioManager);
         }
     }
 

@@ -9,8 +9,17 @@ public class AudioManager : MonoBehaviour
 
     public void Play(string name, GameObject agent)
     {
-       Sound s = Array.Find(soundClips, Sound => Sound.name == name);
-        AudioSource agentAudio = agent.GetComponent<AudioSource>();
+        AudioSource agentAudio;
+        if (agent.GetComponent<AudioSource>() == null)
+        {
+            agentAudio = agent.AddComponent<AudioSource>();
+        }
+        else
+        {
+            agentAudio = agent.GetComponent<AudioSource>();
+        }
+
+       Sound s = Array.Find(soundClips, Sound => Sound.name == name);       
 
         agentAudio.clip = s.clip;
         agentAudio.loop = s.loop;
