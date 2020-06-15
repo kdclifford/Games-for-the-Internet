@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -8,19 +9,59 @@ public class Health : MonoBehaviour
     public int currentHealth;
     public LayerMask projectile;
     public Movement playerMovement;
-    private GameObject uiInfo;
+    private UiInfo uiInfo;
+    private PowerUpManger managerPowerUp;
+    bool clearPowerUpText = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        uiInfo = GameObject.FindGameObjectWithTag("UiInfo");
+        uiInfo = GameObject.FindGameObjectWithTag("UiInfo").GetComponent<UiInfo>();
         playerMovement = gameObject.GetComponent<Movement>();
         currentHealth = startingHealth;
+        managerPowerUp = GetComponent<PowerUpManger>();
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 17)
+        {
+            //  collision.gameObject.GetComponent<HitOnce>().destroy = true;
+            clearPowerUpText = false;
+            if (!playerMovement.wings && collision.gameObject.tag == "Wing")
+            {
+               
+                uiInfo.powerUpPickUp.GetComponent<Text>().text = "Press E to Pick Up Wing Power Up";
+                if (Input.GetKey(KeyCode.E))
+                {
+                    managerPowerUp.wingPowerUp();
+                    //DestroyPowerUP(3, collision.gameObject);
+                }
+            }
+            else if (!playerMovement.shoot && collision.gameObject.tag == "Blob")
+            {
+                uiInfo.powerUpPickUp.GetComponent<Text>().text = "Press E to Pick Up Blob Power Up";
+                if (Input.GetKey(KeyCode.E))
+                {
+                    managerPowerUp.shootPowerUp();
+                    //DestroyPowerUP(3, collision.gameObject);
+                }
+            }
+            else if (!playerMovement.block && collision.gameObject.tag == "Block")
+            {
+                uiInfo.powerUpPickUp.GetComponent<Text>().text = "Press E to Pick Up Block Power Up";
+                if (Input.GetKey(KeyCode.E))
+                {
+                    managerPowerUp.blockPowerUp();
+                   // DestroyPowerUP(3, collision.gameObject);
+                }
+            }
+        }
+       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       // Debug.Log(collision.name);
+        // Debug.Log(collision.name);
 
         if (collision.gameObject.tag == "AttackBox" && collision.gameObject.layer == 14)
         {
@@ -41,33 +82,21 @@ public class Health : MonoBehaviour
             uiInfo.GetComponent<UiInfo>().score.GetComponent<ScoreScript>().AddScore(-1);
             // collision.gameObject.SetActive(false);            
         }
-        else if (collision.gameObject.layer == 17)
-        {
-            //  collision.gameObject.GetComponent<HitOnce>().destroy = true;
-
-            if (collision.gameObject.tag == "Wing")
-            {
-                Debug.Log("wings");
-            }
-            else if (collision.gameObject.tag == "Blob")
-            {
-                Debug.Log("Blob");
-            }
-
-
-
-            Destroy(collision.gameObject);
-            uiInfo.GetComponent<UiInfo>().score.GetComponent<ScoreScript>().AddScore(3);
-
-
-        }
-
     }
 
+    void DestroyPowerUP(int score, GameObject powerUp)
+    {
+        //Destroy(powerUp);
+        uiInfo.GetComponent<UiInfo>().score.GetComponent<ScoreScript>().AddScore(score);
+    }
 
     // Update is called once per frame
     void Update()
     {
-
+         if(clearPowerUpText)
+        {
+            uiInfo.powerUpPickUp.GetComponent<Text>().text = "";
+        }
+        clearPowerUpText = true;
     }
 }

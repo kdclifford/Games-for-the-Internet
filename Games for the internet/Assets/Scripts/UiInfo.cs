@@ -9,6 +9,7 @@ public class UiInfo : MonoBehaviour
     public GameObject powerUpWings;
     public GameObject powerUpBlock;
     public GameObject powerUpBlob;
+    public GameObject powerUpPickUp;
 
     // Start is called before the first frame update
     void Start()

@@ -85,7 +85,7 @@ namespace AiFunctions.Utils
                 }
                 else if(isOnGrounded)
                 {
-
+                    
                     agentRig.velocity = (new Vector2(directionalSpeed * (int)agent.transform.localScale.x, agentRig.velocity.y));
 
                 }
@@ -97,7 +97,7 @@ namespace AiFunctions.Utils
             }
             else
             {
-
+                audio.Play("MantisWalk", agent);
                 path.RemoveAt(path.Count - 1);
                 // agentRig.velocity = (new Vector2(0, 0));
             }

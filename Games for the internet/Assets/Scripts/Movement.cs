@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
     private CapsuleCollider2D normalCollider;
     private CapsuleCollider2D crouchCollider;
     public float jumpAmount;
-
+    public GameObject wingObject;
     [SerializeField]
     private List<LayerMask> floorMask;
     public float hoverAmount;
@@ -58,7 +58,15 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (wings)
+        {
+            wingObject.SetActive(true);
+            
+        }
+        else
+            {
+            wingObject.SetActive(false);
+        }
 
         if (!jump && Input.GetKeyDown(KeyCode.Space))
         {
@@ -112,9 +120,17 @@ public class Movement : MonoBehaviour
                     
                     JumpAnimation();
                     jumpAnimation = true;
-                    
-                    //playerVelocity = new Vector2(Body.velocity.x, 10);
+
+                    if (wings)
+                    {
+                        jumpForce.y += (jumpAmount * 100.0f) * 2 * 1.5f;
+
+                    }
+                    else
+                    { 
                     jumpForce.y += (jumpAmount * 100.0f) * 2;
+                    }
+                    
                 }
             }
 
@@ -210,7 +226,11 @@ public class Movement : MonoBehaviour
     IEnumerator DoAttack()
     {
         
-        AttackAnimation();        
+        AttackAnimation();
+        if(shoot)
+        {
+        GetComponent<MaggotAttack>().attack = true;
+        }
         attackBox.SetActive(true);
         yield return new WaitForSeconds(0.3f);
         //yield return new WaitForSeconds(0.5f);

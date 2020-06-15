@@ -47,40 +47,66 @@ MonoBehaviour:
   - name: MainMenu
     clip: {fileID: 8300000, guid: 3b96beec828d72e46b01c2eb03f7a8b5, type: 3}
     loop: 1
+    Sound3D: 0
     volume: 0.775
     pitch: 0.53
   - name: PlayerJump
     clip: {fileID: 8300000, guid: 7543c25f2eec52844be66f70d4d6e37a, type: 3}
     loop: 0
+    Sound3D: 1
     volume: 0.775
     pitch: 0.68
   - name: MantisAttack
     clip: {fileID: 8300000, guid: e93731183d07c17449ea2ec7c89dba87, type: 3}
     loop: 0
+    Sound3D: 1
     volume: 0.775
     pitch: 0.69
   - name: MantisJump
     clip: {fileID: 8300000, guid: b03d5bb1ee042584cb8394c664657965, type: 3}
     loop: 0
-    volume: 0.775
+    Sound3D: 1
+    volume: 0.5
     pitch: 0.69
   - name: BlobShot
     clip: {fileID: 8300000, guid: 657139480c19ba94cbebd2bb6164815f, type: 3}
-    loop: 0
+    loop: 1
+    Sound3D: 1
     volume: 0.775
     pitch: 0.69
   - name: GameOver
     clip: {fileID: 8300000, guid: d0a926d6d6d81ac4e9ce9c06f33f6699, type: 3}
     loop: 1
+    Sound3D: 0
     volume: 0.775
     pitch: 0.69
   - name: PlayerBite
     clip: {fileID: 8300000, guid: 2ae24040a030aa14aa26fea48b79d692, type: 3}
     loop: 0
+    Sound3D: 1
     volume: 0.775
     pitch: 0.69
   - name: BeetleAttack
     clip: {fileID: 8300000, guid: cf6160311e14a864ab09ee613a29ff4c, type: 3}
     loop: 0
+    Sound3D: 1
     volume: 0.775
     pitch: 0.69
+  - name: MantisWalk
+    clip: {fileID: 8300000, guid: 8a7adf6b173b75149afc0330ccba2790, type: 3}
+    loop: 0
+    Sound3D: 1
+    volume: 0.775
+    pitch: 0.69
+  - name: PlayerWalk
+    clip: {fileID: 8300000, guid: 056f356335da1024ebb006e3ed14a058, type: 3}
+    loop: 0
+    Sound3D: 1
+    volume: 0.5
+    pitch: 1
+  - name: BackGroundMusic
+    clip: {fileID: 8300000, guid: 645aa627762ec9a44a09d7a648a9a8ee, type: 3}
+    loop: 1
+    Sound3D: 0
+    volume: 0.05
+    pitch: 1
