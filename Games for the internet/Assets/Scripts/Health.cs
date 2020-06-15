@@ -8,7 +8,7 @@ public class Health : MonoBehaviour
     public int startingHealth;
     public int currentHealth;
     public LayerMask projectile;
-    public Movement playerMovement;
+    private Movement playerMovement;
     private UiInfo uiInfo;
     private PowerUpManger managerPowerUp;
     bool clearPowerUpText = false;
@@ -26,11 +26,8 @@ public class Health : MonoBehaviour
         if (collision.gameObject.layer == 17)
         {
             //  collision.gameObject.GetComponent<HitOnce>().destroy = true;
-            clearPowerUpText = false;
             if (!playerMovement.wings && collision.gameObject.tag == "Wing")
-            {
-               
-                uiInfo.powerUpPickUp.GetComponent<Text>().text = "Press E to Pick Up Wing Power Up";
+            {                
                 if (Input.GetKey(KeyCode.E))
                 {
                     managerPowerUp.wingPowerUp();
@@ -38,8 +35,7 @@ public class Health : MonoBehaviour
                 }
             }
             else if (!playerMovement.shoot && collision.gameObject.tag == "Blob")
-            {
-                uiInfo.powerUpPickUp.GetComponent<Text>().text = "Press E to Pick Up Blob Power Up";
+            {               
                 if (Input.GetKey(KeyCode.E))
                 {
                     managerPowerUp.shootPowerUp();
@@ -48,7 +44,6 @@ public class Health : MonoBehaviour
             }
             else if (!playerMovement.block && collision.gameObject.tag == "Block")
             {
-                uiInfo.powerUpPickUp.GetComponent<Text>().text = "Press E to Pick Up Block Power Up";
                 if (Input.GetKey(KeyCode.E))
                 {
                     managerPowerUp.blockPowerUp();
@@ -93,10 +88,10 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         if(clearPowerUpText)
-        {
-            uiInfo.powerUpPickUp.GetComponent<Text>().text = "";
-        }
-        clearPowerUpText = true;
+        // if(clearPowerUpText)
+        //{
+        //    uiInfo.powerUpPickUp.GetComponent<Text>().text = "";
+        //}
+        //clearPowerUpText = true;
     }
 }

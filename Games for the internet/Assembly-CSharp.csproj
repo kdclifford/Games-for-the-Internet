@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\Parallax.cs" />
     <Compile Include="Assets\Scripts\PowerUpManger.cs" />
+    <Compile Include="Assets\Scripts\PowerUpText.cs" />
     <Compile Include="Assets\Scripts\ReturnToMenu.cs" />
     <Compile Include="Assets\Scripts\RotatePowerUp.cs" />
     <Compile Include="Assets\Scripts\ScoreScript.cs" />
