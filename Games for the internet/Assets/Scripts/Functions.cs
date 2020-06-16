@@ -593,7 +593,7 @@ namespace Functions.Utils
                 }
                     if(hit)
                 {
-                    Debug.Log(hit.collider.name);
+                    //Debug.Log(hit.collider.name);
                     return true;
                 }
             }

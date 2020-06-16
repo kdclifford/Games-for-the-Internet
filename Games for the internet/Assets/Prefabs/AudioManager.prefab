@@ -108,5 +108,5 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 645aa627762ec9a44a09d7a648a9a8ee, type: 3}
     loop: 1
     Sound3D: 0
-    volume: 0.05
+    volume: 0.03
     pitch: 1

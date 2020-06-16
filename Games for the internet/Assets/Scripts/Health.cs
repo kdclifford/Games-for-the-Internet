@@ -88,6 +88,10 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y < -100)
+        {
+            uiInfo.score.GetComponent<ScoreScript>().AddScore(-1000);
+        }
         // if(clearPowerUpText)
         //{
         //    uiInfo.powerUpPickUp.GetComponent<Text>().text = "";

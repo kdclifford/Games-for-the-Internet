@@ -7,7 +7,7 @@ using UnityEngine;
 public class ScoreScript : MonoBehaviour
 {
     public int startingScore;
-    private int currentScore;
+    public int currentScore;
     private float scoreTimer;
     public GameObject time;
     private int unitSecondsTimer = 0;

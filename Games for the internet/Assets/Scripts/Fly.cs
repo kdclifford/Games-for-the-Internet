@@ -9,12 +9,13 @@ public class Fly : MonoBehaviour
     private Rigidbody2D agentRig;
     private float flyAmount;
     private Vector3 startPos;
-    public GameObject player;
+    private GameObject player;
     public Animator agentAnim;
     public GameObject attackBox;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         startPos = transform.position;
         agentCol = GetComponent<Collider2D>();
         agentRig = GetComponent<Rigidbody2D>();

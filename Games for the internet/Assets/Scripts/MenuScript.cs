@@ -20,10 +20,16 @@ public class MenuScript : MonoBehaviour
         setMainMenu();
     }
 
-    public void SwitcLevel()
+    public void SwitcLevel1()
     {
         SceneManager.LoadScene("Level 1");
     }
+
+    public void SwitcLevelTut()
+    {
+        SceneManager.LoadScene("Tutorial Level");
+    }
+
     // Update is called once per frame
     void Update()
     {

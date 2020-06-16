@@ -8627,10 +8627,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Maggot
       objectReference: {fileID: 0}
-    - target: {fileID: 7718973050912539423, guid: 3111e87848e25a849b53b9bb97f9db1b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3111e87848e25a849b53b9bb97f9db1b, type: 3}
