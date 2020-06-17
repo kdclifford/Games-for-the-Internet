@@ -63,7 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\PreviousLevel.cs" />
     <Compile Include="Assets\Scripts\AI_Script.cs" />
     <Compile Include="Assets\Scripts\AStar.cs" />
     <Compile Include="Assets\Scripts\AiAgentInfo.cs" />
@@ -96,15 +95,16 @@
     <Compile Include="Assets\Scripts\Parallax.cs" />
     <Compile Include="Assets\Scripts\PowerUpManger.cs" />
     <Compile Include="Assets\Scripts\PowerUpText.cs" />
+    <Compile Include="Assets\Scripts\PreviousLevel.cs" />
     <Compile Include="Assets\Scripts\ReturnToMenu.cs" />
     <Compile Include="Assets\Scripts\RotatePowerUp.cs" />
     <Compile Include="Assets\Scripts\ScoreScript.cs" />
     <Compile Include="Assets\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\SpawnPowerUp.cs" />
     <Compile Include="Assets\Scripts\ToggleFunctions.cs" />
+    <Compile Include="Assets\Scripts\Tutorial.cs" />
     <Compile Include="Assets\Scripts\UiInfo.cs" />
     <Compile Include="Assets\Scripts\test.cs" />
-    <Compile Include="Assets\Tutorial.cs" />
     <None Include="Assets\Taiga-Asset-Pack_v2_vnitti\Readme.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Kyle/Documents/GitHub/Games-for-the-Internet/Games for the internet/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

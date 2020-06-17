@@ -110,6 +110,7 @@ public class Movement : MonoBehaviour
         else
         {
             IdleAnimation();
+            jumpAnimation = false;
         }
 
         if (!isAttacking)
@@ -119,8 +120,8 @@ public class Movement : MonoBehaviour
                 if (!CurrentAnimation.GetCurrentAnimatorStateInfo(0).IsName("Jump") && KylesFunctions.isGrounded2D(normalCollider, 0.01f, floorMask) && raycast(normalCollider, floorMask, 0.01f))
                 {
                     
-                    JumpAnimation();
                     jumpAnimation = true;
+                    JumpAnimation();
 
                     if (wings)
                     {
@@ -184,6 +185,7 @@ public class Movement : MonoBehaviour
                 {
                     if (!jumpAnimation)
                     {
+                        jumpAnimation = false;
                         IdleAnimation();
                     }
                     Body.velocity = new Vector2(0, Body.velocity.y);

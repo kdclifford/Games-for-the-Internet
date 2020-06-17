@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -49,6 +50,23 @@ public class Health : MonoBehaviour
                     managerPowerUp.blockPowerUp();
                    // DestroyPowerUP(3, collision.gameObject);
                 }
+            }
+            else if (collision.gameObject.tag == "Win")
+            {
+                if(SceneManager.GetActiveScene().name == "Level 1")
+                {
+                    SceneManager.LoadScene("Level 2");
+                }
+                else if (SceneManager.GetActiveScene().name == "Level 2")
+                {
+                    SceneManager.LoadScene("Level 3");
+                }
+               else if (SceneManager.GetActiveScene().name == "Level 3")
+                {
+                    SceneManager.LoadScene("Winner");
+                }
+
+
             }
         }
        
